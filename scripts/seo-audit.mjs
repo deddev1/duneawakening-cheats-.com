@@ -104,13 +104,19 @@ if (!workerEntry.includes("from './functions/_middleware.js'")) {
 if (!workerEntry.includes('env.ASSETS.fetch')) {
 	fail('worker.js must delegate to env.ASSETS.fetch for static assets');
 }
+if (!workerEntry.includes('isSeoStaticPath')) {
+	fail('worker.js must serve sitemap/robots paths directly from ASSETS');
+}
 
 const wranglerToml = readFileSync(join(root, 'wrangler.toml'), 'utf8');
 if (!/main\s*=\s*["']worker\.js["']/.test(wranglerToml)) {
 	fail('wrangler.toml must set main = "worker.js"');
 }
-if (!wranglerToml.includes('run_worker_first = true')) {
-	fail('wrangler.toml must set run_worker_first = true so redirects run before assets');
+if (!wranglerToml.includes('run_worker_first = false')) {
+	fail('wrangler.toml must set run_worker_first = false so sitemaps serve as static assets');
+}
+if (!existsSync(join(root, 'scripts/write-worker-routes.mjs'))) {
+	fail('Missing scripts/write-worker-routes.mjs for dist/_routes.json generation');
 }
 if (!wranglerToml.includes('binding = "ASSETS"')) {
 	fail('wrangler.toml must bind static assets as ASSETS');

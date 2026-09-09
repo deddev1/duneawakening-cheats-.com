@@ -189,7 +189,8 @@ function getClientProtocol(request) {
 	return new URL(request.url).protocol.replace(':', '').toLowerCase();
 }
 
-function isSeoStaticPath(pathname) {
+/** Sitemaps and robots.txt — served as raw static assets for crawlers. */
+export function isSeoStaticPath(pathname) {
 	return (
 		pathname === '/robots.txt' ||
 		pathname === '/sitemap-index.xml' ||
@@ -216,23 +217,23 @@ function applySecurityHeaders(headers, { html = false } = {}) {
 	}
 }
 
-function withSeoStaticHeaders(pathname, response) {
-	const headers = new Headers(response.headers);
-	if (pathname.endsWith('.xml')) {
-		headers.set('Content-Type', 'application/xml; charset=utf-8');
-	} else if (pathname === '/robots.txt') {
-		headers.set('Content-Type', 'text/plain; charset=utf-8');
+function redirectResponse(location, status = 301) {
+	const headers = new Headers({
+		Location: location,
+		'Cache-Control': 'no-store',
+	});
+	if (status === 301) {
+		headers.set('CDN-Cache-Control', 'no-store');
+		headers.set('Cloudflare-CDN-Cache-Control', 'no-store');
 	}
-	headers.set('Cache-Control', 'public, max-age=3600');
-	headers.delete('CDN-Cache-Control');
-	headers.delete('Cloudflare-CDN-Cache-Control');
-	return new Response(response.body, { status: response.status, headers });
+	applySecurityHeaders(headers);
+	return new Response(null, { status, headers });
 }
 
-export async function onRequest(context) {
-	const url = new URL(context.request.url);
+/** Host, HTTPS, path, and locale redirects. Returns a Response or null. */
+export function getEdgeRedirect(url, request) {
 	const host = url.hostname.toLowerCase();
-	const proto = getClientProtocol(context.request);
+	const proto = getClientProtocol(request);
 
 	const isLegacyHost = LEGACY_HOSTS.has(host);
 	const isProductionHost = host === APEX_HOST || host === WWW_HOST || isLegacyHost;
@@ -241,52 +242,47 @@ export async function onRequest(context) {
 
 	if (needsHostRedirect || needsHttpsRedirect) {
 		const mappedPath = PATH_REDIRECTS[url.pathname] ?? url.pathname;
-		const target = new URL(mappedPath + url.search, CANONICAL_ORIGIN);
-		const headers = new Headers({
-			Location: target.toString(),
-			'Cache-Control': 'no-store',
-			'CDN-Cache-Control': 'no-store',
-			'Cloudflare-CDN-Cache-Control': 'no-store',
-		});
-		applySecurityHeaders(headers);
-		return new Response(null, { status: 301, headers });
+		return redirectResponse(new URL(mappedPath + url.search, CANONICAL_ORIGIN).toString(), 301);
 	}
 
 	const pathRedirect = PATH_REDIRECTS[url.pathname];
 	if (pathRedirect) {
-		const headers = new Headers({
-			Location: new URL(pathRedirect + url.search, CANONICAL_ORIGIN).toString(),
-			'Cache-Control': 'no-store',
-		});
-		applySecurityHeaders(headers);
-		return new Response(null, { status: 301, headers });
+		return redirectResponse(
+			new URL(pathRedirect + url.search, CANONICAL_ORIGIN).toString(),
+			301,
+		);
 	}
 
 	const homeLocaleRedirect = getHomeLocaleRedirect(
 		url.pathname,
 		url.search,
-		context.request.headers,
+		request.headers,
 	);
 	if (homeLocaleRedirect) {
-		const headers = new Headers({
-			Location: new URL(homeLocaleRedirect + url.search, CANONICAL_ORIGIN).toString(),
-			'Cache-Control': 'no-store',
-		});
-		applySecurityHeaders(headers);
-		return new Response(null, { status: 302, headers });
+		return redirectResponse(
+			new URL(homeLocaleRedirect + url.search, CANONICAL_ORIGIN).toString(),
+			302,
+		);
 	}
 
-	const response = await context.next();
+	return null;
+}
 
-	if (isSeoStaticPath(url.pathname)) {
-		return withSeoStaticHeaders(url.pathname, response);
+export async function onRequest(context) {
+	const url = new URL(context.request.url);
+	const redirect = getEdgeRedirect(url, context.request);
+	if (redirect) return redirect;
+
+	const response = await context.next();
+	const contentType = response.headers.get('Content-Type') || '';
+
+	// Never re-wrap static assets — avoids worker 500s on XML/images/fonts.
+	if (isSeoStaticPath(url.pathname) || !contentType.includes('text/html')) {
+		return response;
 	}
 
 	const headers = new Headers(response.headers);
-	const contentType = headers.get('Content-Type') || '';
-	const isHtml = contentType.includes('text/html');
-
-	applySecurityHeaders(headers, { html: isHtml });
+	applySecurityHeaders(headers, { html: true });
 
 	return new Response(response.body, {
 		status: response.status,

@@ -1,8 +1,8 @@
-import { onRequest } from './functions/_middleware.js';
+import { getEdgeRedirect, isSeoStaticPath, onRequest } from './functions/_middleware.js';
 
 /**
- * Cloudflare Workers entry — runs edge middleware (HTTPS/www/legacy redirects,
- * path redirects, locale detection, security headers) before static assets.
+ * Cloudflare Workers entry — edge redirects and security headers.
+ * Sitemaps/robots are served directly from static assets (no middleware re-wrap).
  */
 export default {
 	async fetch(request, env) {
@@ -12,6 +12,15 @@ export default {
 					'Static assets are not bound. Redeploy with wrangler.toml [assets] binding = "ASSETS".',
 					{ status: 503, headers: { 'Content-Type': 'text/plain; charset=utf-8' } },
 				);
+			}
+
+			const url = new URL(request.url);
+			const redirect = getEdgeRedirect(url, request);
+			if (redirect) return redirect;
+
+			// Crawler files: return the static asset unchanged (see dist/_routes.json).
+			if (isSeoStaticPath(url.pathname)) {
+				return env.ASSETS.fetch(request);
 			}
 
 			return await onRequest({
