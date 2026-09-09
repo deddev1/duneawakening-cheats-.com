@@ -31,7 +31,7 @@ npm run optimize:images
 
 ## Deploy (Cloudflare Pages)
 
-1. Create a Cloudflare Pages project named **dune-awakeningcheats**
+1. Create a Cloudflare Pages project named **dune-awakening-cheats**
 2. Connect this repo or upload `dist/` after `npm run build`
 3. Build command: `npm run build`
 4. Output directory: `dist`
