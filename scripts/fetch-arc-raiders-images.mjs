@@ -6,42 +6,42 @@ import sharp from 'sharp';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = join(root, 'public', 'images');
 
-/** Seven unique Project Zomboid cheat screenshots — keyword-mapped for projectzomboidcheats.com SEO. */
+/** Seven unique Dune Awakening cheat screenshots — keyword-mapped for duneawakeningcheats.com SEO. */
 const SOURCES = [
 	{
 		url: 'https://cdn.wh-satano.ru/arcane-wt-s1.webp',
-		file: 'zomboid-cheats-hero.webp',
-		alt: 'Project Zomboid cheats main menu with ESP, wallhack, and aimbot toggles on PC',
+		file: 'dune-awakening-cheats-hero.webp',
+		alt: 'Dune Awakening cheats main menu with ESP, wallhack, and aimbot toggles on PC',
 	},
 	{
 		url: 'https://cdn.wh-satano.ru/arcane-wt-s2.webp',
-		file: 'zomboid-esp-overlay.webp',
-		alt: 'Project Zomboid ESP overlay showing zombie or survivor positions and module health through terrain',
+		file: 'dune-awakening-esp-overlay.webp',
+		alt: 'Dune Awakening ESP overlay showing player or NPC positions and module health through terrain',
 	},
 	{
 		url: 'https://cdn.wh-satano.ru/arcane-wt-s3.webp',
-		file: 'zomboid-esp-zombies.webp',
-		alt: 'Project Zomboid wallhack ESP with enemy outline boxes and distance readouts in loot runs',
+		file: 'dune-awakening-esp-enemies.webp',
+		alt: 'Dune Awakening wallhack ESP with enemy outline boxes and distance readouts in spice runs',
 	},
 	{
 		url: 'https://cdn.wh-satano.ru/smg-wt-s1.webp',
-		file: 'zomboid-esp-modules.webp',
-		alt: 'Project Zomboid aimbot lead calculator lock on zombie or survivor turret during combat encounter',
+		file: 'dune-awakening-esp-modules.webp',
+		alt: 'Dune Awakening aimbot lead calculator lock on player or NPC turret during combat encounter',
 	},
 	{
 		url: 'https://cdn.wh-satano.ru/smg-wt-s2.webp',
-		file: 'zomboid-aimbot-menu.webp',
-		alt: 'Project Zomboid cheats cheat menu with aimbot, ballistic prediction, and FOV settings',
+		file: 'dune-awakening-aimbot-menu.webp',
+		alt: 'Dune Awakening cheats cheat menu with aimbot, ballistic prediction, and FOV settings',
 	},
 	{
 		url: 'https://cdn.wh-satano.ru/smg-wt-s3.webp',
-		file: 'zomboid-radar-hack.webp',
-		alt: 'Project Zomboid radar hack 2D overlay showing zombie horde spawn routes and enemy aircraft',
+		file: 'dune-awakening-radar-hack.webp',
+		alt: 'Dune Awakening radar hack 2D overlay showing faction raid spawn routes and enemy aircraft',
 	},
 	{
 		url: 'https://cdn.wh-satano.ru/wtfecs1.webp',
-		file: 'zomboid-survival.webp',
-		alt: 'Project Zomboid cheats survival run with ESP boxes and aimbot active on capture zone',
+		file: 'dune-awakening-survival.webp',
+		alt: 'Dune Awakening cheats open-world run with ESP boxes and aimbot active on capture zone',
 	},
 ];
 
@@ -80,4 +80,4 @@ for (const item of SOURCES) {
 	console.log(`  ✓ ${item.file} (+ variants)`);
 }
 
-console.log('Done — 7 Project Zomboid cheat images installed.');
+console.log('Done — 7 Dune Awakening cheat images installed.');

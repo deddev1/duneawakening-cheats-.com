@@ -13,43 +13,43 @@ const REMOVE_IDS = [
 ];
 
 const REPLACEMENTS = [
-	['warzone-esp', 'project-zomboid-esp'],
-	['warzone-aimbot', 'project-zomboid-aimbot'],
-	['ricochet', 'eac-bypass'],
-	['undetected-warzone-cheats', 'undetected-project-zomboid-cheats'],
-	['warzone-wallhack', 'project-zomboid-wallhack'],
-	['warzone-radar-hack', 'project-zomboid-radar-hack'],
-	['warzone-cheats-2026', 'project-zomboid-cheats-2026'],
-	['ricochet-bypass', 'eac-bypass-project-zomboid'],
-	['warzonescheats.net', 'projectzomboidcheats.com'],
-	['trucos-warzone', 'trucos-zomboid'],
-	['triche-warzone', 'triche-zomboid'],
-	['warzone-cheats', 'project-zomboid-cheats'],
-	['cheats-warzone', 'cheats-zomboid'],
-	['trucchi-warzone', 'trucchi-zomboid'],
-	['cheaty-warzone', 'cheaty-zomboid'],
-	['chity-warzone', 'chity-zomboid'],
-	['chitov-warzone', 'chitov-zomboid'],
+	['warzone-esp', 'dune-awakening-esp'],
+	['warzone-aimbot', 'dune-awakening-aimbot'],
+	['ricochet', 'battleye-bypass'],
+	['undetected-warzone-cheats', 'undetected-dune-awakening-cheats'],
+	['warzone-wallhack', 'dune-awakening-wallhack'],
+	['warzone-radar-hack', 'dune-awakening-radar-hack'],
+	['warzone-cheats-2026', 'dune-awakening-cheats-2026'],
+	['ricochet-bypass', 'battleye-bypass-dune-awakening'],
+	['warzonescheats.net', 'duneawakeningcheats.com'],
+	['trucos-warzone', 'trucos-dune'],
+	['triche-warzone', 'triche-dune'],
+	['warzone-cheats', 'dune-awakening-cheats'],
+	['cheats-warzone', 'cheats-dune'],
+	['trucchi-warzone', 'trucchi-dune'],
+	['cheaty-warzone', 'cheaty-dune'],
+	['chity-warzone', 'chity-dune'],
+	['chitov-warzone', 'chitov-dune'],
 	['chitiv-warzone', 'chitiv-overwatch'],
-	['cheatow-warzone', 'cheatow-zomboid'],
-	['hile-warzone', 'hile-zomboid'],
-	['warzone-hile', 'zomboid-hile'],
-	['warzone-esp-chity', 'project-zomboid-esp-chity'],
-	['warzone-aimbot-chity', 'project-zomboid-aimbot-chity'],
-	['unentdeckte-warzone-cheats', 'unentdeckte-project-zomboid-cheats'],
-	['cheats-warzone-indetectaveis', 'cheats-zomboid-indetectaveis'],
-	['trucchi-warzone-indetectabili', 'trucchi-zomboid-indetectabili'],
-	['niewykrywalne-cheats-warzone', 'niewykrywalne-cheats-zomboid'],
-	['nedecektiruemye-chity-warzone', 'nedecektiruemye-chity-zomboid'],
-	['tespit-edilemeyen-warzone-hileleri', 'tespit-edilemeyen-zomboid-hileleri'],
-	['nedecektovani-chity-warzone', 'nedecektovani-chity-zomboid'],
-	['cheats-warzone-nedetectabile', 'cheats-zomboid-nedetectabile'],
-	['basta-warzone-cheats', 'basta-project-zomboid-cheats'],
-	['eac-bypass-project-zomboid-trucos-warzone', 'eac-bypass-project-zomboid-trucos-zomboid'],
-	['eac-bypass-project-zomboid-triche-warzone', 'eac-bypass-project-zomboid-triche-zomboid'],
-	['eac-bypass-project-zomboid-cheats-warzone', 'eac-bypass-project-zomboid-cheats-zomboid'],
-	['eac-bypass-project-zomboid-chity-warzone', 'eac-bypass-project-zomboid-chity-zomboid'],
-	['eac-bypass-project-zomboid-warzone', 'eac-bypass-project-zomboid'],
+	['cheatow-warzone', 'cheatow-dune'],
+	['hile-warzone', 'hile-dune'],
+	['warzone-hile', 'dune-hile'],
+	['warzone-esp-chity', 'dune-awakening-esp-chity'],
+	['warzone-aimbot-chity', 'dune-awakening-aimbot-chity'],
+	['unentdeckte-warzone-cheats', 'unentdeckte-dune-awakening-cheats'],
+	['cheats-warzone-indetectaveis', 'cheats-dune-indetectaveis'],
+	['trucchi-warzone-indetectabili', 'trucchi-dune-indetectabili'],
+	['niewykrywalne-cheats-warzone', 'niewykrywalne-cheats-dune'],
+	['nedecektiruemye-chity-warzone', 'nedecektiruemye-chity-dune'],
+	['tespit-edilemeyen-warzone-hileleri', 'tespit-edilemeyen-dune-hileleri'],
+	['nedecektovani-chity-warzone', 'nedecektovani-chity-dune'],
+	['cheats-warzone-nedetectabile', 'cheats-dune-nedetectabile'],
+	['basta-warzone-cheats', 'basta-dune-awakening-cheats'],
+	['battleye-bypass-dune-awakening-trucos-warzone', 'battleye-bypass-dune-awakening-trucos-dune'],
+	['battleye-bypass-dune-awakening-triche-warzone', 'battleye-bypass-dune-awakening-triche-dune'],
+	['battleye-bypass-dune-awakening-cheats-warzone', 'battleye-bypass-dune-awakening-cheats-dune'],
+	['battleye-bypass-dune-awakening-chity-warzone', 'battleye-bypass-dune-awakening-chity-dune'],
+	['battleye-bypass-dune-awakening-warzone', 'battleye-bypass-dune-awakening'],
 ];
 
 function apply(content) {
@@ -78,31 +78,31 @@ async function fixRouting() {
 	content = apply(content);
 	for (const id of REMOVE_IDS) content = removePageBlocks(content, id);
 	// Fix eac key in englishPaths
-	content = content.replace(/\teac: '/, "\t'eac-bypass': '");
+	content = content.replace(/\teac: '/, "\t'battleye-bypass': '");
 	await writeFile(path.join(ROOT, 'src/data/i18n/routing.ts'), content);
 	console.log('Fixed routing.ts');
 }
 
 async function fixConstants() {
-	const heroImages = `/** Hero image per page topic — keyword-rich project-zomboid-cheats paths. */
+	const heroImages = `/** Hero image per page topic — keyword-rich dune-awakening-cheats paths. */
 export const HERO_IMAGES = {
-	home: '/images/zomboid-cheats-hero.webp',
-	'project-zomboid-esp': '/images/zomboid-cheats-esp-wallhack.webp',
-	'project-zomboid-aimbot': '/images/zomboid-cheats-aimbot-combat.webp',
-	features: '/images/zomboid-cheats-package.webp',
-	pricing: '/images/zomboid-cheats-cover.webp',
-	setup: '/images/zomboid-loadout-builder.webp',
-	updates: '/images/zomboid-header-art.webp',
-	faq: '/images/zomboid-squad-fight.webp',
-	support: '/images/zomboid-cheats-package.webp',
-	undetected: '/images/zomboid-battle-royale-combat.webp',
-	wallhack: '/images/zomboid-cheats-esp-wallhack.webp',
-	radar: '/images/zomboid-player-esp.webp',
-	'eac-bypass': '/images/zomboid-reboot-van-fight.webp',
-	'cheats-2026': '/images/zomboid-cheats-hero.webp',
-	privacy: '/images/zomboid-cheats-aimbot-combat.webp',
-	refund: '/images/zomboid-cheats-cover.webp',
-	terms: '/images/zomboid-cheats-package.webp',
+	home: '/images/dune-awakening-cheats-hero.webp',
+	'dune-awakening-esp': '/images/dune-awakening-cheats-esp-wallhack.webp',
+	'dune-awakening-aimbot': '/images/dune-awakening-cheats-aimbot-combat.webp',
+	features: '/images/dune-awakening-cheats-package.webp',
+	pricing: '/images/dune-awakening-cheats-cover.webp',
+	setup: '/images/dune-awakening-loadout-builder.webp',
+	updates: '/images/dune-awakening-header-art.webp',
+	faq: '/images/dune-awakening-squad-fight.webp',
+	support: '/images/dune-awakening-cheats-package.webp',
+	undetected: '/images/dune-awakening-battle-royale-combat.webp',
+	wallhack: '/images/dune-awakening-cheats-esp-wallhack.webp',
+	radar: '/images/dune-awakening-player-esp.webp',
+	'battleye-bypass': '/images/dune-awakening-reboot-van-fight.webp',
+	'cheats-2026': '/images/dune-awakening-cheats-hero.webp',
+	privacy: '/images/dune-awakening-cheats-aimbot-combat.webp',
+	refund: '/images/dune-awakening-cheats-cover.webp',
+	terms: '/images/dune-awakening-cheats-package.webp',
 };`;
 
 	let content = await readFile(path.join(SRC, 'scripts/i18n-data/constants.mjs'), 'utf8');
@@ -112,12 +112,12 @@ export const HERO_IMAGES = {
 	}
 	content = content.replace(
 		/export const PAGE_IDS = \[[\s\S]*?\];/,
-		`export const PAGE_IDS = [\n\t'home', 'project-zomboid-esp', 'project-zomboid-aimbot', 'features', 'pricing', 'setup',\n\t'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'eac-bypass',\n\t'cheats-2026', 'privacy', 'refund', 'terms',\n];`,
+		`export const PAGE_IDS = [\n\t'home', 'dune-awakening-esp', 'dune-awakening-aimbot', 'features', 'pricing', 'setup',\n\t'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'battleye-bypass',\n\t'cheats-2026', 'privacy', 'refund', 'terms',\n];`,
 	);
 	content = content.replace(/\/\*\* Hero image[\s\S]*?};/, heroImages);
 	content = content.replace(
 		/export type PageId = [^;]+;/,
-		"export type PageId = 'home' | 'project-zomboid-esp' | 'project-zomboid-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'eac-bypass' | 'cheats-2026' | 'privacy' | 'refund' | 'terms';",
+		"export type PageId = 'home' | 'dune-awakening-esp' | 'dune-awakening-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'battleye-bypass' | 'cheats-2026' | 'privacy' | 'refund' | 'terms';",
 	);
 	content = content.replace(/operatorEsp/g, 'playerEsp');
 	content = content.replace(/gulagFight/g, 'rebootFight');

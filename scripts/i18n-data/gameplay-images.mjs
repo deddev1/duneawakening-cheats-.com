@@ -1,42 +1,42 @@
-/** Supabase-hosted Project Zomboid gameplay & cheat UI images — shared with src/data/gameplay-images.ts */
+/** Supabase-hosted Dune Awakening gameplay & cheat UI images — shared with src/data/gameplay-images.ts */
 export const SUPABASE_GAMEPLAY_BASE =
-	'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/zomby';
+	'https://boqgsoiwnpbisvrxulbe.supabase.co/storage/v1/object/public/dune';
 
 export const gameplayImages = {
 	hero: {
-		src: '/images/zomboid-cheats-hero.webp',
-		alt: 'Bloodied survivor with a machete standing on a wrecked van roof as a zombie horde reaches upward in a rain-soaked ruined city',
-		title: 'Project Zomboid Cheats hero — survivor facing a zombie horde',
+		src: '/images/dune-awakening-cheats-hero.webp',
+		alt: 'Dune Awakening heroes on Arrakis with a sandworm erupting from the desert beneath a crimson sky',
+		title: 'Dune Awakening Cheats hero — Arrakis sandworm and survival fighters',
 	},
 	gameplayStreetCombat: {
-		src: `${SUPABASE_GAMEPLAY_BASE}/images%20(1).jpg`,
-		alt: 'Project Zomboid gameplay — survivor fighting zombies on Knox County streets with melee and firearms',
-		title: 'Project Zomboid street combat gameplay',
+		src: `${SUPABASE_GAMEPLAY_BASE}/Screenshot%202026-09-09%20124626.png`,
+		alt: 'Dune Awakening gameplay — player fighting enemies on Arrakis dunes with melee and firearms',
+		title: 'Dune Awakening street combat gameplay',
 	},
 	gameplayHordeDefense: {
-		src: `${SUPABASE_GAMEPLAY_BASE}/images%20(2).jpg`,
-		alt: 'Project Zomboid gameplay — horde of zombies surrounding a survivor near abandoned buildings',
-		title: 'Project Zomboid horde defense gameplay',
+		src: `${SUPABASE_GAMEPLAY_BASE}/Screenshot%202026-09-09%20124717%20(1).png`,
+		alt: 'Dune Awakening gameplay — faction raid surrounding a player near abandoned structures',
+		title: 'Dune Awakening base defense gameplay',
 	},
 	gameplayLootRun: {
-		src: `${SUPABASE_GAMEPLAY_BASE}/images%20(3).jpg`,
-		alt: 'Project Zomboid gameplay — survivor looting supplies while zombies approach in Knox County',
-		title: 'Project Zomboid loot run gameplay',
+		src: `${SUPABASE_GAMEPLAY_BASE}/Screenshot%202026-09-09%20124707%20(1).png`,
+		alt: 'Dune Awakening gameplay — player harvesting spice while enemies approach in the Deep Desert',
+		title: 'Dune Awakening loot run gameplay',
 	},
 	cheatMenuUi: {
-		src: `${SUPABASE_GAMEPLAY_BASE}/bBeheXR.png`,
-		alt: 'Project Zomboid cheats in-game menu with ESP, aimbot, and radar toggle controls on Windows PC',
-		title: 'Project Zomboid Cheats menu UI',
+		src: `${SUPABASE_GAMEPLAY_BASE}/Screenshot%202026-09-09%20124638%20(1).png`,
+		alt: 'Dune Awakening cheats in-game menu with ESP, aimbot, and radar toggle controls on Windows PC',
+		title: 'Dune Awakening Cheats menu UI',
 	},
 	cheatClientPanel: {
-		src: `${SUPABASE_GAMEPLAY_BASE}/download.jpg`,
-		alt: 'Project Zomboid cheats client panel showing feature toggles for ESP wallhack, aimbot, and radar',
-		title: 'Project Zomboid cheats client panel',
+		src: `${SUPABASE_GAMEPLAY_BASE}/Screenshot%202026-09-09%20124432.png`,
+		alt: 'Dune Awakening cheats client panel showing feature toggles for ESP wallhack, aimbot, and radar',
+		title: 'Dune Awakening cheats client panel',
 	},
 	cheatEspOverlay: {
-		src: `${SUPABASE_GAMEPLAY_BASE}/download%20(1).jpg`,
-		alt: 'Project Zomboid ESP overlay screenshot with zombie boxes, loot markers, and distance readouts',
-		title: 'Project Zomboid ESP overlay screenshot',
+		src: `${SUPABASE_GAMEPLAY_BASE}/Screenshot%202026-09-09%20124508%20(1).png`,
+		alt: 'Dune Awakening ESP overlay screenshot with enemy boxes, loot markers, and distance readouts',
+		title: 'Dune Awakening ESP overlay screenshot',
 	},
 };
 
@@ -44,8 +44,8 @@ const g = gameplayImages;
 
 export const HERO_IMAGES = {
 	home: g.hero.src,
-	'project-zomboid-esp': g.gameplayStreetCombat.src,
-	'project-zomboid-aimbot': g.gameplayHordeDefense.src,
+	'dune-awakening-esp': g.gameplayStreetCombat.src,
+	'dune-awakening-aimbot': g.gameplayHordeDefense.src,
 	features: g.cheatMenuUi.src,
 	pricing: g.cheatClientPanel.src,
 	setup: g.cheatEspOverlay.src,
@@ -55,7 +55,7 @@ export const HERO_IMAGES = {
 	undetected: g.gameplayHordeDefense.src,
 	wallhack: g.gameplayStreetCombat.src,
 	radar: g.gameplayLootRun.src,
-	'eac-bypass': g.gameplayHordeDefense.src,
+	'battleye-bypass': g.gameplayHordeDefense.src,
 	'cheats-2026': g.hero.src,
 	hacks: g.gameplayStreetCombat.src,
 	'cheat-download': g.cheatClientPanel.src,
@@ -72,8 +72,8 @@ export const HERO_IMAGES = {
 
 export const PAGE_IMAGE_ALTS = {
 	home: g.hero.alt,
-	'project-zomboid-esp': g.gameplayStreetCombat.alt,
-	'project-zomboid-aimbot': g.gameplayHordeDefense.alt,
+	'dune-awakening-esp': g.gameplayStreetCombat.alt,
+	'dune-awakening-aimbot': g.gameplayHordeDefense.alt,
 	features: g.cheatMenuUi.alt,
 	pricing: g.cheatClientPanel.alt,
 	setup: g.cheatEspOverlay.alt,
@@ -83,7 +83,7 @@ export const PAGE_IMAGE_ALTS = {
 	undetected: g.gameplayHordeDefense.alt,
 	wallhack: g.gameplayStreetCombat.alt,
 	radar: g.gameplayLootRun.alt,
-	'eac-bypass': g.gameplayHordeDefense.alt,
+	'battleye-bypass': g.gameplayHordeDefense.alt,
 	'cheats-2026': g.hero.alt,
 	hacks: g.gameplayStreetCombat.alt,
 	'cheat-download': g.cheatClientPanel.alt,

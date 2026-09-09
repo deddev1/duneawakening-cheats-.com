@@ -1,5 +1,5 @@
 import { customerReviews, siteConfig } from './site';
-import { zomboidImages } from './zomboid';
+import { duneImages } from './dune';
 
 export const reviewsBasePath = '/reviews/';
 
@@ -11,32 +11,32 @@ export function absoluteReviewUrl(slug?: string): string {
 	return new URL(slug ? getReviewPath(slug) : reviewsBasePath, siteConfig.url).href;
 }
 
-/** Unique Project Zomboid screenshots for each review sitemap entry. */
+/** Unique Dune Awakening screenshots for each review sitemap entry. */
 const reviewImagePaths = [
-	zomboidImages.espWallhack,
-	zomboidImages.aimbotCombat,
-	zomboidImages.radarHack,
-	zomboidImages.cover,
-	zomboidImages.loadoutBuilder,
-	zomboidImages.playerEsp,
-	zomboidImages.squadFight,
-	zomboidImages.headerArt,
-	zomboidImages.cheatsPackage,
-	zomboidImages.battleRoyaleCombat,
+	duneImages.espWallhack,
+	duneImages.aimbotCombat,
+	duneImages.radarHack,
+	duneImages.cover,
+	duneImages.loadoutBuilder,
+	duneImages.playerEsp,
+	duneImages.squadFight,
+	duneImages.headerArt,
+	duneImages.cheatsPackage,
+	duneImages.battleRoyaleCombat,
 ] as const;
 
 const reviewIndexOgImage = {
 	url: new URL(siteConfig.defaultOgImage, siteConfig.url).href,
-	title: 'Project Zomboid Cheats customer reviews',
-	caption: 'Project Zomboid Cheats buyer reviews for ESP, aimbot, radar, and cloud DMA',
+	title: 'Dune Awakening Cheats customer reviews',
+	caption: 'Dune Awakening Cheats buyer reviews for ESP, aimbot, radar, and cloud DMA',
 };
 
 function reviewImageForIndex(index: number) {
 	const path = reviewImagePaths[index % reviewImagePaths.length];
 	return {
 		url: new URL(path, siteConfig.url).href,
-		title: 'Project Zomboid Cheats review screenshot',
-		caption: 'Project Zomboid Cheats ESP, aimbot, and radar preview from buyer reviews',
+		title: 'Dune Awakening Cheats review screenshot',
+		caption: 'Dune Awakening Cheats ESP, aimbot, and radar preview from buyer reviews',
 	};
 }
 
@@ -73,7 +73,7 @@ export function getReviewSitemapEntries() {
 			images: [
 				{
 					url: image.url,
-					title: `Project Zomboid Cheats review by @${review.handle}`,
+					title: `Dune Awakening Cheats review by @${review.handle}`,
 					caption: review.seoDescription,
 				},
 			],

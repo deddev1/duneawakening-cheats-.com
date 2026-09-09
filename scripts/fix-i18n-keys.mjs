@@ -8,19 +8,19 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.resolve(ROOT, '..', 'amansand');
 
 const UI_REPLACEMENTS = [
-	['Warzone Cheats', 'Project Zomboid Cheats'],
-	['Warzone cheats', 'Project Zomboid cheats'],
-	['Warzone Cheats', 'Project Zomboid Cheats'],
-	['Call of Duty: Warzone', 'Project Zomboid'],
-	['Call of Duty Warzone', 'Project Zomboid'],
-	['Call of Duty', 'Project Zomboid'],
-	['Warzone PC', 'Project Zomboid PC'],
-	['for Warzone', 'for Project Zomboid'],
-	['Warzone ', 'Project Zomboid '],
+	['Warzone Cheats', 'Dune Awakening Cheats'],
+	['Warzone cheats', 'Dune Awakening cheats'],
+	['Warzone Cheats', 'Dune Awakening Cheats'],
+	['Call of Duty: Warzone', 'Dune Awakening'],
+	['Call of Duty Warzone', 'Dune Awakening'],
+	['Call of Duty', 'Dune Awakening'],
+	['Warzone PC', 'Dune Awakening PC'],
+	['for Warzone', 'for Dune Awakening'],
+	['Warzone ', 'Dune Awakening '],
 	['warzone ', 'rust '],
 	['Ricochet maintenance', 'anti-cheat maintenance'],
-	['Ricochet anti-cheat', 'Project Zomboid anti-cheat (EAC)'],
-	['Ricochet', 'Project Zomboid anti-cheat (EAC)'],
+	['Ricochet anti-cheat', 'Dune Awakening BattlEye anti-cheat (EAC)'],
+	['Ricochet', 'Dune Awakening BattlEye anti-cheat (EAC)'],
 	['operatorEsp', 'playerEsp'],
 	['gulagFight', 'rebootFight'],
 	['alMazrah', 'battleRoyaleIsland'],
@@ -28,14 +28,14 @@ const UI_REPLACEMENTS = [
 	['operator', 'player'],
 	['Operators', 'Players'],
 	['Operator', 'Player'],
-	['Al Mazrah', 'Project Zomboid'],
-	['Verdansk', 'Project Zomboid'],
+	['Al Mazrah', 'Dune Awakening'],
+	['Verdansk', 'Dune Awakening'],
 	['Resurgence', 'loot objectives'],
 	['gulag', 'control point'],
-	['warzonescheats.net', 'projectzomboidcheats.com'],
-	['Trucos Warzone', 'Trucos Project Zomboid'],
-	['Triches Warzone', 'Triches Project Zomboid'],
-	['Cheats Warzone', 'Cheats Project Zomboid'],
+	['warzonescheats.net', 'duneawakeningcheats.com'],
+	['Trucos Warzone', 'Trucos Dune Awakening'],
+	['Triches Warzone', 'Triches Dune Awakening'],
+	['Cheats Warzone', 'Cheats Dune Awakening'],
 ];
 
 function apply(content) {
@@ -54,16 +54,16 @@ for (const file of ['ui-strings-part1.mjs', 'ui-strings-part2.mjs']) {
 
 // Fix pages-en eac key
 let pagesEn = await readFile(path.join(ROOT, 'scripts/i18n-data/pages-en.mjs'), 'utf8');
-pagesEn = pagesEn.replace(/\teac: \{/, "\t'eac-bypass': {");
-pagesEn = pagesEn.replace(/Project Zomboid Warzone/g, 'Project Zomboid');
-pagesEn = pagesEn.replace(/for Project Zomboid Warzone/g, 'for Project Zomboid');
+pagesEn = pagesEn.replace(/\teac: \{/, "\t'battleye-bypass': {");
+pagesEn = pagesEn.replace(/Dune Awakening Warzone/g, 'Dune Awakening');
+pagesEn = pagesEn.replace(/for Dune Awakening Warzone/g, 'for Dune Awakening');
 await writeFile(path.join(ROOT, 'scripts/i18n-data/pages-en.mjs'), pagesEn);
 
 // Fix pages-i18n
 let pagesI18n = await readFile(path.join(ROOT, 'scripts/i18n-data/pages-i18n.mjs'), 'utf8');
 pagesI18n = apply(pagesI18n);
-pagesI18n = pagesI18n.replace(/'ricochet'/g, "'eac-bypass'");
-pagesI18n = pagesI18n.replace(/ricochet:/g, "'eac-bypass':");
+pagesI18n = pagesI18n.replace(/'ricochet'/g, "'battleye-bypass'");
+pagesI18n = pagesI18n.replace(/ricochet:/g, "'battleye-bypass':");
 await writeFile(path.join(ROOT, 'scripts/i18n-data/pages-i18n.mjs'), pagesI18n);
 
 // Fix generate-i18n pages count

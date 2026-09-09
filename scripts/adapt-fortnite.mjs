@@ -27,7 +27,7 @@ const RENAME_PAGE_DIRS = [
 	['warzone-radar-hack', 'fortnite-radar-hack'],
 	['undetected-warzone-cheats', 'undetected-fortnite-cheats'],
 	['warzone-cheats-2026', 'fortnite-cheats-2026'],
-	['ricochet-bypass', 'eac-bypass-fortnite'],
+	['ricochet-bypass', 'battleye-bypass-fortnite'],
 ];
 
 const REMOVE_PAGE_IDS = [
@@ -50,11 +50,11 @@ const REPLACEMENTS = [
 	['warzone-cheats-2026', 'fortnite-cheats-2026'],
 	['warzone-radar-hack', 'fortnite-radar-hack'],
 	['warzone-wallhack', 'fortnite-wallhack'],
-	['ricochet-bypass', 'eac-bypass-fortnite'],
+	['ricochet-bypass', 'battleye-bypass-fortnite'],
 	['warzone-aimbot', 'fortnite-aimbot'],
 	['warzone-esp', 'fortnite-esp'],
-	["'ricochet'", "'eac-bypass'"],
-	['| ricochet', '| eac-bypass'],
+	["'ricochet'", "'battleye-bypass'"],
+	['| ricochet', '| battleye-bypass'],
 	['warzone-aimbot', 'fortnite-aimbot'],
 	['warzone-esp', 'fortnite-esp'],
 	['call-of-duty-warzone-cheats', 'fortnite-cheats'],
@@ -66,34 +66,34 @@ const REPLACEMENTS = [
 	['Warzone cheat', 'Fortnite cheat'],
 	['Warzone CheatsSite', 'FortniteCheatsSite'],
 	['Warzone CheatsSite', 'FortniteCheatsSite'],
-	['Ricochet anti-cheat', 'Project Zomboid anti-cheat (EAC)'],
+	['Ricochet anti-cheat', 'Dune Awakening BattlEye anti-cheat (EAC)'],
 	['Ricochet maintenance', 'anti-cheat maintenance'],
 	['Ricochet bypass', 'anti-cheat bypass'],
-	['Ricochet Bypass', 'EAC Bypass'],
-	['Ricochet', 'Project Zomboid anti-cheat (EAC)'],
+	['Ricochet Bypass', 'BattlEye Bypass'],
+	['Ricochet', 'Dune Awakening BattlEye anti-cheat (EAC)'],
 	['ricochet', 'eac'],
-	['Verdansk, Urzikstan, and Rebirth Island', 'Project Zomboid missions, Knox County exploration, and loot runs lobbies'],
-	['Verdansk, Urzikstan and Rebirth Island', 'Project Zomboid missions, Knox County exploration and loot runs lobbies'],
-	['Verdansk, Urzikstan, et Rebirth Island', 'Project Zomboid missions, Knox County exploration et lobbies compétitifs'],
-	['Verdansk, Urzikstan e Rebirth Island', 'Project Zomboid missions, Knox County exploration e lobbies competitivi'],
-	['Verdansk, Urzikstan und Rebirth Island', 'Project Zomboid missions, Knox County exploration und loot runs-Lobbys'],
-	['gulag fights', 'rehorde spawn wave rotations'],
-	['gulag fight', 'rehorde spawn wave fight'],
-	['gulag rounds', 'rehorde spawn rounds'],
-	['gulag', 'rehorde spawn wave'],
+	['Verdansk, Urzikstan, and Rebirth Island', 'Dune Awakening missions, Arrakis exploration, and spice runs lobbies'],
+	['Verdansk, Urzikstan and Rebirth Island', 'Dune Awakening missions, Arrakis exploration and spice runs lobbies'],
+	['Verdansk, Urzikstan, et Rebirth Island', 'Dune Awakening missions, Arrakis exploration et lobbies compétitifs'],
+	['Verdansk, Urzikstan e Rebirth Island', 'Dune Awakening missions, Arrakis exploration e lobbies competitivi'],
+	['Verdansk, Urzikstan und Rebirth Island', 'Dune Awakening missions, Arrakis exploration und spice runs-Lobbys'],
+	['gulag fights', 'reenemy spawn wave rotations'],
+	['gulag fight', 'reenemy spawn wave fight'],
+	['gulag rounds', 'reenemy spawn rounds'],
+	['gulag', 'reenemy spawn wave'],
 	['operators', 'players'],
 	['operator', 'player'],
 	['Operators', 'Players'],
 	['Operator', 'Player'],
 	['UAV', 'supply drop'],
-	['Resurgence and loot runs', 'Knox County exploration and loot runs'],
-	['BR and Resurgence', 'BR and Knox County exploration'],
-	['BR & Resurgence', 'BR & Knox County exploration'],
+	['Resurgence and spice runs', 'Arrakis exploration and spice runs'],
+	['BR and Resurgence', 'BR and Arrakis exploration'],
+	['BR & Resurgence', 'BR & Arrakis exploration'],
 	['loadout drops', 'loot chests'],
 	['loadout drop', 'loot chest'],
 	['contracts', 'chests'],
 	['contract', 'chest'],
-	['Al Mazrah', 'Project Zomboid missions'],
+	['Al Mazrah', 'Dune Awakening missions'],
 	['al-mazrah', 'battle-royale-island'],
 	['warzoneImages', 'fortniteImages'],
 	["from './warzone'", "from './fortnite'"],
@@ -204,7 +204,7 @@ async function updatePageAstroFiles() {
 	for (const [from, to] of RENAME_PAGE_DIRS) {
 		const pageId = to.replace('undetected-fortnite-cheats', 'undetected')
 			.replace('fortnite-cheats-2026', 'cheats-2026')
-			.replace('eac-bypass-fortnite', 'eac-bypass')
+			.replace('battleye-bypass-fortnite', 'battleye-bypass')
 			.replace('fortnite-', 'fortnite-');
 		const file = path.join(ROOT, 'src', 'pages', to, 'index.astro');
 		try {
@@ -215,7 +215,7 @@ async function updatePageAstroFiles() {
 				'fortnite-radar-hack': 'radar',
 				'undetected-fortnite-cheats': 'undetected',
 				'fortnite-cheats-2026': 'cheats-2026',
-				'eac-bypass-fortnite': 'eac-bypass',
+				'battleye-bypass-fortnite': 'battleye-bypass',
 			};
 			const pageIdVal = idMap[to] || to;
 			const content = `---

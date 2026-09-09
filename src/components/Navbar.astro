@@ -31,7 +31,7 @@ const isActive = (href: string, linkPageId?: PageId) => {
 		return (
 			current === href ||
 			current.startsWith(href) ||
-			current.startsWith('/project-zomboid-cheats')
+			current.startsWith('/dune-awakening-cheats')
 		);
 	}
 	return current === href || current.startsWith(href);
@@ -149,7 +149,7 @@ const isActive = (href: string, linkPageId?: PageId) => {
 		padding: 0.45rem 0.65rem;
 		border-radius: 0.85rem;
 		border: 1px solid rgba(255, 255, 255, 0.06);
-		background: rgba(10, 28, 29, 0.42);
+		background: rgba(10, 13, 15, 0.82);
 		backdrop-filter: blur(18px) saturate(1.1);
 		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 		pointer-events: auto;
@@ -160,7 +160,7 @@ const isActive = (href: string, linkPageId?: PageId) => {
 	}
 
 	.nav.is-scrolled .nav__bar {
-		background: rgba(10, 28, 29, 0.72);
+		background: rgba(10, 13, 15, 0.94);
 		border-color: rgba(255, 255, 255, 0.08);
 		box-shadow: 0 6px 24px rgba(0, 0, 0, 0.22);
 	}
@@ -213,8 +213,8 @@ const isActive = (href: string, linkPageId?: PageId) => {
 	.nav__link.is-active {
 		color: #ffffff;
 		font-weight: 600;
-		background: rgba(104, 112, 82, 0.06);
-		border-color: rgba(104, 112, 82, 0.12);
+		background: rgba(var(--gold-rgb), 0.08);
+		border-color: rgba(var(--gold-rgb), 0.16);
 	}
 
 	.nav__link.is-active .nav__link-glow {
@@ -264,8 +264,8 @@ const isActive = (href: string, linkPageId?: PageId) => {
 	}
 
 	.nav__toggle:hover {
-		background: rgba(104, 112, 82, 0.1);
-		border-color: rgba(104, 112, 82, 0.2);
+		background: rgba(var(--gold-rgb), 0.12);
+		border-color: rgba(var(--gold-rgb), 0.22);
 	}
 
 	.nav__toggle-icon,
@@ -334,7 +334,7 @@ const isActive = (href: string, linkPageId?: PageId) => {
 			border: 0;
 			padding: 0;
 			margin: 0;
-			background: rgba(9, 11, 11, 0.55);
+			background: rgba(var(--midnight-rgb), 0.55);
 			backdrop-filter: blur(6px);
 			cursor: pointer;
 		}
@@ -364,7 +364,7 @@ const isActive = (href: string, linkPageId?: PageId) => {
 			padding: 0.65rem;
 			border-radius: 0.85rem;
 			border: 1px solid rgba(255, 255, 255, 0.08);
-			background: rgba(10, 28, 29, 0.94);
+			background: rgba(10, 13, 15, 0.96);
 			backdrop-filter: blur(20px);
 			box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
 			overflow-y: auto;

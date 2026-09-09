@@ -1,6 +1,6 @@
 /**
  * External game guides manifest.
- * Project Zomboid Cheats site — no third-party game guides.
+ * Dune Awakening Cheats site — no third-party game guides.
  */
 
 /** @typedef {{ url: string, gameId: string, gameName: string, slug: string, anchorText: string }} GuideManifestEntry */

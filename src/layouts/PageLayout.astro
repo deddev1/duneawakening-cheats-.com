@@ -5,7 +5,8 @@ import SiteFooter from '../components/SiteFooter.astro';
 import RippleButton from '../components/inspira/RippleButton.astro';
 import { getUi } from '../data/i18n';
 import { getBreadcrumbLabelForPage, getLocalizedPath } from '../data/i18n/routing';
-import { zomboidImages } from '../data/zomboid';
+import { altForImageSrc } from '../data/gameplay-images';
+import { duneImages } from '../data/dune';
 import { contentSrc, contentSrcSet, galleryTileSizes, isExternalImage, isSiteHeroImage } from '../lib/responsive-images';
 import { englishPaths, pageIds, type PageId } from '../data/i18n/routing';
 import { defaultLocale } from '../data/i18n/locales';
@@ -40,9 +41,9 @@ const {
 	heading,
 	eyebrow,
 	heroImage,
-	heroAlt = 'Project Zomboid cheats product preview',
-	gallery = zomboidImages.product.slice(0, 3),
-	galleryTitle = 'Project Zomboid cheats UI reference',
+	heroAlt = 'Dune Awakening cheats client panel with ESP, aimbot, and radar on Windows PC',
+	gallery = duneImages.product.slice(0, 3),
+	galleryTitle = 'Dune Awakening cheats UI reference',
 	ctaPrimary,
 	ctaSecondary,
 	showGallery = true,
@@ -68,7 +69,7 @@ const homeHref = getLocalizedPath('home', locale);
 const bannerImage =
 	heroImage && !isSiteHeroImage(heroImage) ? heroImage : undefined;
 const bannerIsExternal = bannerImage ? isExternalImage(bannerImage) : false;
-const ogImageForMeta = bannerImage ?? zomboidImages.headerArt;
+const ogImageForMeta = bannerImage ?? duneImages.headerArt;
 
 const normalizedGallery = gallery
 	.map((item) => {
@@ -80,16 +81,10 @@ const normalizedGallery = gallery
 			};
 		}
 
-		const file = item.split('/').pop()?.replace(/\.webp$/i, '') ?? 'project-zomboid-cheats';
-		const keywordAlt = file
-			.split('-')
-			.map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-			.join(' ');
-
 		return {
 			src: contentSrc(item),
 			srcset: contentSrcSet(item),
-			alt: heroAlt || `${keywordAlt} - ${ui.product.title}`,
+			alt: altForImageSrc(item, heroAlt || `${ui.product.title} screenshot`),
 		};
 	})
 	.filter((item) => Boolean(item.src) && !isSiteHeroImage(item.src));
@@ -256,7 +251,7 @@ const breadcrumbs = [
 		isolation: isolate;
 		min-height: clamp(132px, 22vh, 200px);
 		overflow: hidden;
-		border-bottom: 1px solid rgba(104, 112, 82, 0.12);
+		border-bottom: 1px solid rgba(var(--bronze-rgb), 0.12);
 		margin-bottom: 1.35rem;
 	}
 
@@ -291,8 +286,8 @@ const breadcrumbs = [
 		position: absolute;
 		inset: 0;
 		background:
-			linear-gradient(180deg, rgba(9, 11, 11, 0.72) 0%, rgba(9, 11, 11, 0.88) 100%),
-			linear-gradient(90deg, rgba(9, 11, 11, 0.55), rgba(9, 11, 11, 0.35) 50%, rgba(9, 11, 11, 0.55));
+			linear-gradient(180deg, rgba(var(--midnight-rgb), 0.72) 0%, rgba(var(--midnight-rgb), 0.88) 100%),
+			linear-gradient(90deg, rgba(var(--midnight-rgb), 0.55), rgba(var(--midnight-rgb), 0.35) 50%, rgba(var(--midnight-rgb), 0.55));
 	}
 
 	.banner__content {
@@ -388,13 +383,13 @@ const breadcrumbs = [
 	}
 
 	.btn--ghost {
-		border: 1px solid rgba(104, 112, 82, 0.28);
-		background: rgba(17, 21, 20, 0.55);
+		border: 1px solid rgba(var(--bronze-rgb), 0.28);
+		background: rgba(18, 19, 19, 0.55);
 		color: var(--color-ink);
 	}
 
 	.btn--ghost:hover {
-		border-color: rgba(104, 112, 82, 0.5);
+		border-color: rgba(var(--bronze-rgb), 0.5);
 		color: var(--color-ink);
 	}
 
@@ -422,8 +417,8 @@ const breadcrumbs = [
 	.article :global(.card-panel) {
 		padding: clamp(1.25rem, 2.5vw, 1.55rem) clamp(1.3rem, 2.5vw, 1.6rem);
 		border-radius: 1rem;
-		border: 1px solid rgba(104, 112, 82, 0.16);
-		background: linear-gradient(145deg, rgba(23, 27, 26, 0.94) 0%, rgba(17, 21, 20, 0.9) 100%);
+		border: 1px solid rgba(var(--bronze-rgb), 0.16);
+		background: linear-gradient(145deg, rgba(var(--card-rgb), 0.94) 0%, rgba(18, 19, 19, 0.9) 100%);
 		box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
 		display: grid;
 		gap: 0.95rem;
@@ -435,7 +430,7 @@ const breadcrumbs = [
 
 	@media (hover: hover) and (pointer: fine) {
 		.article :global(.card-panel:hover) {
-			border-color: rgba(210, 174, 118, 0.28);
+			border-color: rgba(var(--gold-hover-rgb), 0.28);
 			transform: translateY(-1px);
 			box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
 		}
@@ -461,7 +456,7 @@ const breadcrumbs = [
 		bottom: 0.12em;
 		width: 3px;
 		border-radius: 999px;
-		background: linear-gradient(180deg, #d2ae76 0%, #687052 100%);
+		background: linear-gradient(180deg, var(--color-gold-hover) 0%, var(--color-bronze) 100%);
 	}
 
 	.article :global(h3) {
@@ -473,7 +468,7 @@ const breadcrumbs = [
 
 	.article :global(p) {
 		margin: 0;
-		color: rgba(255, 255, 255, 0.84);
+		color: var(--color-body);
 		font-size: 0.98rem;
 	}
 
@@ -484,7 +479,7 @@ const breadcrumbs = [
 	.article :global(.card-panel > p:first-of-type) {
 		font-size: 1.02rem;
 		line-height: 1.68;
-		color: rgba(255, 255, 255, 0.9);
+		color: var(--color-muted);
 	}
 
 	.article :global(.card-panel ul) {
@@ -499,9 +494,9 @@ const breadcrumbs = [
 		position: relative;
 		padding: 0.65rem 0.85rem 0.65rem 2rem;
 		border-radius: 0.7rem;
-		background: rgba(9, 11, 11, 0.45);
-		border: 1px solid rgba(104, 112, 82, 0.12);
-		color: rgba(255, 255, 255, 0.8);
+		background: rgba(var(--midnight-rgb), 0.45);
+		border: 1px solid rgba(var(--bronze-rgb), 0.12);
+		color: var(--color-body);
 		font-size: 0.96rem;
 		line-height: 1.55;
 	}
@@ -524,7 +519,7 @@ const breadcrumbs = [
 	}
 
 	.article :global(a:not(.btn-buy):not(.btn):not(.pricing-showcase__cart):not(.features-detail__pricing-link):not(.features-detail__checkout-link):hover) {
-		color: #D2AE76;
+		color: var(--color-gold-hover);
 	}
 
 	.article :global(.btn-buy),
@@ -532,7 +527,7 @@ const breadcrumbs = [
 	.article :global(.btn-buy:visited),
 	.article :global(.btn-buy:focus-visible) {
 		color: #ffffff;
-		text-shadow: 0 1px 3px rgba(9, 11, 11, 0.55);
+		text-shadow: 0 1px 3px rgba(var(--midnight-rgb), 0.55);
 	}
 
 	.article :global(.price-grid) {
@@ -547,8 +542,8 @@ const breadcrumbs = [
 		justify-items: center;
 		padding: 1.2rem 0.9rem;
 		border-radius: 0.85rem;
-		border: 1px solid rgba(104, 112, 82, 0.18);
-		background: rgba(9, 11, 11, 0.45);
+		border: 1px solid rgba(var(--bronze-rgb), 0.18);
+		background: rgba(var(--midnight-rgb), 0.45);
 		text-align: center;
 		text-decoration: none;
 		color: inherit;
@@ -558,12 +553,12 @@ const breadcrumbs = [
 	}
 
 	.article :global(.price-card:hover) {
-		border-color: rgba(104, 112, 82, 0.4);
+		border-color: rgba(var(--bronze-rgb), 0.4);
 		transform: translateY(-1px);
 	}
 
 	.article :global(.price-card.is-featured) {
-		background: linear-gradient(160deg, #687052, #D2AE76 55%, #D2AE76);
+		background: linear-gradient(160deg, var(--color-bronze), var(--color-gold-hover) 55%, var(--color-gold-hover));
 		border-color: transparent;
 		color: white;
 	}
@@ -630,13 +625,13 @@ const breadcrumbs = [
 	}
 
 	.article :global(.cta-btn--ghost) {
-		border: 1px solid rgba(104, 112, 82, 0.28);
+		border: 1px solid rgba(var(--bronze-rgb), 0.28);
 		background: transparent;
 		color: var(--color-ink);
 	}
 
 	.article :global(.cta-btn--ghost:hover) {
-		border-color: rgba(104, 112, 82, 0.5);
+		border-color: rgba(var(--bronze-rgb), 0.5);
 		color: var(--color-ink);
 	}
 
@@ -647,7 +642,7 @@ const breadcrumbs = [
 		display: grid;
 		gap: 1rem;
 		padding-top: 0.5rem;
-		border-top: 1px solid rgba(104, 112, 82, 0.12);
+		border-top: 1px solid rgba(var(--bronze-rgb), 0.12);
 	}
 
 	.gallery-block__head {
@@ -681,8 +676,8 @@ const breadcrumbs = [
 		margin: 0;
 		overflow: hidden;
 		border-radius: 0.85rem;
-		border: 1px solid rgba(104, 112, 82, 0.14);
-		background: #111514;
+		border: 1px solid rgba(var(--bronze-rgb), 0.14);
+		background: var(--color-surface);
 		aspect-ratio: 16 / 10;
 	}
 
@@ -712,7 +707,7 @@ const breadcrumbs = [
 		position: absolute;
 		inset: auto 0 0;
 		padding: 1.4rem 0.75rem 0.65rem;
-		background: linear-gradient(transparent, rgba(9, 11, 11, 0.92));
+		background: linear-gradient(transparent, rgba(var(--midnight-rgb), 0.92));
 		color: var(--color-muted);
 		font-size: 0.72rem;
 		font-weight: 600;

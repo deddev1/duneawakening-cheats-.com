@@ -6,40 +6,40 @@ import { externalGuidePosts } from './posts.generated';
 import type { ExternalGuidePost, ResolvedExternalGuide } from './types';
 
 export const guidesBasePath = '/guides/';
-export const NATIVE_GAME_GUIDES_CATEGORY = 'Project Zomboid Game Guides';
+export const NATIVE_GAME_GUIDES_CATEGORY = 'Dune Awakening Game Guides';
 
-/** Trusted third-party Project Zomboid resources shown below native guides on /guides/. */
-export const zomboidAuthorityLinks = [
+/** Trusted third-party Dune Awakening resources shown below native guides on /guides/. */
+export const duneAuthorityLinks = [
 	{
-		title: 'Project Zomboid on Steam',
+		title: 'Dune Awakening on Steam',
 		description: 'Official store page, system requirements, and player reviews.',
-		href: 'https://store.steampowered.com/app/108600/Project_Zomboid/',
+		href: 'https://store.steampowered.com/app/1172710/Dune_Awakening/',
 	},
 	{
-		title: 'Project Zomboid patch notes & news',
+		title: 'Dune Awakening patch notes & news',
 		description: 'Read official PC update posts before you change your loadout.',
-		href: 'https://projectzomboid.com/blog/',
+		href: 'https://duneawakening.com/news/',
 	},
 	{
-		title: 'Official Project Zomboid website',
-		description: 'Game overview, news, and resources from The Indie Stone.',
-		href: 'https://projectzomboid.com/',
+		title: 'Official Dune Awakening website',
+		description: 'Game overview, news, and resources from Funcom.',
+		href: 'https://duneawakening.com/',
 	},
 	{
-		title: 'Project Zomboid Steam community hub',
+		title: 'Dune Awakening Steam community hub',
 		description: 'Announcements, guides, and community discussions.',
-		href: 'https://steamcommunity.com/app/108600',
+		href: 'https://steamcommunity.com/app/1172710',
 	},
 ] as const;
 
-/** Pedagogical order for native Project Zomboid guides on the hub. */
+/** Pedagogical order for native Dune Awakening guides on the hub. */
 const NATIVE_GUIDE_ORDER = [
-	'project-zomboid-new-player-guide',
-	'project-zomboid-gameplay-modes-explained',
-	'project-zomboid-zombie-types-guide',
-	'project-zomboid-loot-farming-guide',
-	'project-zomboid-survival-beginners-guide',
-	'project-zomboid-patch-notes-guide',
+	'dune-awakening-new-player-guide',
+	'dune-awakening-gameplay-modes-explained',
+	'dune-awakening-faction-guide',
+	'dune-awakening-spice-farming-guide',
+	'dune-awakening-survival-beginners-guide',
+	'dune-awakening-patch-notes-guide',
 ];
 
 export function getGuidePath(slug: string): string {
@@ -69,8 +69,8 @@ export function getExternalGuideBySlug(slug: string): ResolvedExternalGuide | un
 	return post ? resolveExternalGuide(post) : undefined;
 }
 
-/** Native Project Zomboid game guides from the blog — shown at top of /guides/. */
-export function getNativeZomboidGuides() {
+/** Native Dune Awakening game guides from the blog — shown at top of /guides/. */
+export function getNativeDuneGuides() {
 	const guides = getPostsByCategory(defaultLocale, NATIVE_GAME_GUIDES_CATEGORY);
 	const order = new Map(NATIVE_GUIDE_ORDER.map((id, index) => [id, index]));
 	return [...guides].sort((a, b) => {
@@ -144,7 +144,7 @@ export function getGuidesSitemapEntries() {
 				{
 					url: new URL(siteConfig.defaultOgImage, siteConfig.url).href,
 					title: 'Game guides hub',
-					caption: 'Project Zomboid survival and gameplay guides',
+					caption: 'Dune Awakening survival and gameplay guides',
 				},
 			],
 		},

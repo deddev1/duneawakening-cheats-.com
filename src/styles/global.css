@@ -26,37 +26,49 @@
 	--font-display: ui-rounded, "Segoe UI Variable Display", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
 	--font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
-	/* Project Zomboid survival palette */
-	--color-midnight: #090b0b;
-	--color-surface: #111514;
-	--color-surface-raised: #171b1a;
-	--color-surface-muted: #171b1a;
-	--color-surface-elevated: #202523;
-	--color-border: #2b302b;
-	--color-border-strong: rgba(104, 112, 82, 0.45);
+	/* Dune Awakening — desert palette */
+	--color-midnight: #080b0d;
+	--color-navbar: #0a0d0f;
+	--color-surface: #121313;
+	--color-surface-raised: #1b1916;
+	--color-surface-muted: #1b1916;
+	--color-surface-elevated: #29231c;
+	--color-border: #393027;
+	--color-border-strong: rgba(197, 138, 69, 0.38);
 
-	--color-teal: #687052;
-	--color-plum: #687052;
-	--color-fuchsia: #858e63;
-	--color-violet: #b58a58;
-	--color-orchid: #d2ae76;
-	--color-cyan: #d2ae76;
-	--color-mint: #858e63;
-	--color-bright: #d2ae76;
-	--color-warm: #b58a58;
-	--color-danger: #8e4038;
+	--color-gold: #c58a45;
+	--color-gold-hover: #d9a45d;
+	--color-bronze: #80603b;
+	--color-success: #6f8a63;
+
+	--color-teal: #80603b;
+	--color-plum: #80603b;
+	--color-fuchsia: #6f8a63;
+	--color-violet: #80603b;
+	--color-orchid: #c58a45;
+	--color-cyan: #d9a45d;
+	--color-mint: #6f8a63;
+	--color-bright: #d9a45d;
+	--color-warm: #80603b;
+	--color-danger: #a94c35;
 
 	--color-ink: #ffffff;
-	--color-body: #ffffff;
-	--color-muted: #d6d6d0;
-	--color-faint: #b0b0a8;
+	--color-body: #c2b9a9;
+	--color-muted: #c2b9a9;
+	--color-faint: #817a6d;
 
-	--color-button: #687052;
-	--color-button-hover: #858e63;
+	--color-button: #c58a45;
+	--color-button-hover: #d9a45d;
+
+	--gold-rgb: 197, 138, 69;
+	--gold-hover-rgb: 217, 164, 93;
+	--bronze-rgb: 128, 96, 59;
+	--midnight-rgb: 8, 11, 13;
+	--card-rgb: 27, 25, 22;
 
 	--shadow-soft: 0 10px 28px rgba(0, 0, 0, 0.32);
-	--gradient-brand: linear-gradient(135deg, #687052 0%, #b58a58 55%, #d2ae76 100%);
-	--gradient-brand-x: linear-gradient(90deg, #858e63 0%, #d2ae76 100%);
+	--gradient-brand: linear-gradient(135deg, #80603b 0%, #c58a45 55%, #d9a45d 100%);
+	--gradient-brand-x: linear-gradient(90deg, #c58a45 0%, #d9a45d 100%);
 
 	--page-max: 1180px;
 	--page-gutter: 1.5rem;
@@ -68,10 +80,14 @@
 
 /* Always emit core palette tokens for scoped component styles (e.g. footer). */
 :root {
-	--color-surface-raised: #171b1a;
-	--color-surface-elevated: #202523;
-	--color-warm: #b58a58;
-	--color-teal: #687052;
+	--color-navbar: #0a0d0f;
+	--color-surface-raised: #1b1916;
+	--color-surface-elevated: #29231c;
+	--color-gold: #c58a45;
+	--color-gold-hover: #d9a45d;
+	--color-bronze: #80603b;
+	--color-warm: #80603b;
+	--color-teal: #80603b;
 }
 
 @media (min-width: 761px) {
@@ -154,8 +170,8 @@
 	}
 
 	::selection {
-		background: rgba(210, 174, 118, 0.35);
-		color: #090b0b;
+		background: rgba(var(--gold-rgb), 0.35);
+		color: var(--color-midnight);
 	}
 
 	img {
@@ -237,15 +253,15 @@
 		padding: 0.85rem 1.85rem;
 		border-radius: 0.95rem;
 		border: 1px solid rgba(255, 255, 255, 0.22);
-		background: linear-gradient(180deg, #858e63 0%, #687052 100%);
+		background: var(--color-button);
 		color: #ffffff;
 		font-size: 1rem;
 		font-weight: 800;
 		letter-spacing: 0.04em;
-		text-shadow: 0 1px 3px rgba(9, 11, 11, 0.55);
+		text-shadow: 0 1px 3px rgba(var(--midnight-rgb), 0.55);
 		box-shadow:
-			0 1px 0 rgba(255, 255, 255, 0.28) inset,
-			0 8px 20px rgba(9, 11, 11, 0.28);
+			0 1px 0 rgba(255, 255, 255, 0.22) inset,
+			0 8px 20px rgba(var(--midnight-rgb), 0.28);
 		transition:
 			transform 0.2s ease,
 			filter 0.2s ease,
@@ -295,9 +311,9 @@
 		background: linear-gradient(
 			105deg,
 			transparent 0%,
-			rgba(210, 174, 118, 0.14) 42%,
-			rgba(210, 174, 118, 0.28) 50%,
-			rgba(210, 174, 118, 0.14) 58%,
+			rgba(var(--gold-hover-rgb), 0.14) 42%,
+			rgba(var(--gold-hover-rgb), 0.28) 50%,
+			rgba(var(--gold-hover-rgb), 0.14) 58%,
 			transparent 100%
 		);
 		transform: translateX(-170%) skewX(-18deg);
@@ -356,7 +372,7 @@
 			box-shadow:
 				0 1px 0 rgba(255, 255, 255, 0.3) inset,
 				0 0 0 1px rgba(255, 255, 255, 0.12),
-				0 10px 22px rgba(9, 11, 11, 0.32);
+				0 10px 22px rgba(var(--midnight-rgb), 0.32);
 		}
 	}
 
@@ -393,20 +409,37 @@
 
 	.btn-buy:hover {
 		color: #ffffff;
-		background: linear-gradient(180deg, #d2ae76 0%, #858e63 100%);
+		background: var(--color-button-hover);
 		transform: translateY(-1px);
 		filter: brightness(1.03);
-		text-shadow: 0 1px 3px rgba(9, 11, 11, 0.45);
+		text-shadow: 0 1px 3px rgba(var(--midnight-rgb), 0.45);
 	}
 
 	.btn-buy:active {
 		transform: translateY(0);
 	}
 
-	.surface-card {
-		background: linear-gradient(180deg, rgba(23, 27, 26, 0.98) 0%, rgba(17, 21, 20, 0.98) 100%);
+	.surface-card,
+	.card-surface {
+		background: linear-gradient(
+			180deg,
+			rgba(var(--card-rgb), 0.98) 0%,
+			rgba(18, 19, 19, 0.98) 100%
+		);
 		border: 1px solid var(--color-border);
 		box-shadow: var(--shadow-soft);
+		transition:
+			background 0.22s ease,
+			border-color 0.22s ease,
+			box-shadow 0.22s ease;
+	}
+
+	@media (hover: hover) and (pointer: fine) {
+		.surface-card:hover,
+		.card-surface:hover {
+			background: var(--color-surface-elevated);
+			border-color: rgba(var(--gold-rgb), 0.28);
+		}
 	}
 
 	.shell {
@@ -454,9 +487,9 @@
 		pointer-events: none;
 		background: linear-gradient(
 			180deg,
-			rgba(210, 174, 118, 0.06) 0%,
+			rgba(var(--gold-rgb), 0.06) 0%,
 			transparent 36%,
-			rgba(9, 11, 11, 0.22) 100%
+			rgba(var(--midnight-rgb), 0.22) 100%
 		);
 		mix-blend-mode: soft-light;
 	}

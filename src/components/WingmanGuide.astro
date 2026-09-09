@@ -1,7 +1,5 @@
 ---
 import type { PageId } from '../data/i18n/content.generated';
-import { siteConfig } from '../data/site';
-import { wingmanConfig } from '../data/wingman';
 
 interface Props {
 	pageId?: PageId;
@@ -18,25 +16,17 @@ const { pageId } = Astro.props;
 	hidden
 >
 	<div class="wingman__stage">
-		<a
-			class="wingman__character-wrap"
-			href={siteConfig.checkoutUrl}
-			rel="noopener noreferrer"
-			data-wingman-link
-			data-wingman-character
-			aria-label="Get Project Zomboid Cheats"
-		>
-			<p class="wingman__tagline" data-wingman-message>{wingmanConfig.message}</p>
+		<div class="wingman__brand" data-wingman-brand>
 			<img
-				class="wingman__character"
-				src="/images/zomboid-wingman.webp"
-				alt=""
-				width="480"
-				height="480"
+				class="wingman__logo"
+				src="/images/dune-awakening-logo.webp"
+				alt="Dune Awakening logo"
+				width="320"
+				height="120"
 				loading="lazy"
 				decoding="async"
 				fetchpriority="low"
 			/>
-		</a>
+		</div>
 	</div>
 </div>

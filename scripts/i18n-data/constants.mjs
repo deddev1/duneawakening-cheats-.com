@@ -6,8 +6,8 @@ export const LOCALES = [
 ];
 
 export const PAGE_IDS = [
-	'home', 'project-zomboid-esp', 'project-zomboid-aimbot', 'features', 'pricing', 'setup',
-	'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'eac-bypass',
+	'home', 'dune-awakening-esp', 'dune-awakening-aimbot', 'features', 'pricing', 'setup',
+	'updates', 'faq', 'support', 'undetected', 'wallhack', 'radar', 'battleye-bypass',
 	'cheats-2026', 'hacks', 'cheat-download', 'mod-menu', 'soft-aim', 'best-cheats',
 	'aimbot-hack', 'esp-hack', 'unlock-all', 'privacy', 'refund', 'terms',
 ];
@@ -45,7 +45,7 @@ export type LocaleUi = {
 \t\theaderArt: string; cheatsPackage: string; rebootFight: string; battleRoyale: string; battleRoyaleIsland: string;
 \t};
 };
-export type PageId = 'home' | 'project-zomboid-esp' | 'project-zomboid-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'eac-bypass' | 'cheats-2026' | 'hacks' | 'cheat-download' | 'mod-menu' | 'soft-aim' | 'best-cheats' | 'aimbot-hack' | 'esp-hack' | 'unlock-all' | 'privacy' | 'refund' | 'terms';
+export type PageId = 'home' | 'dune-awakening-esp' | 'dune-awakening-aimbot' | 'features' | 'pricing' | 'setup' | 'updates' | 'faq' | 'support' | 'undetected' | 'wallhack' | 'radar' | 'battleye-bypass' | 'cheats-2026' | 'hacks' | 'cheat-download' | 'mod-menu' | 'soft-aim' | 'best-cheats' | 'aimbot-hack' | 'esp-hack' | 'unlock-all' | 'privacy' | 'refund' | 'terms';
 `;
 
 /** Clamp meta strings to SEO limits without ugly ellipsis. */
@@ -76,7 +76,7 @@ export function stripZadeyoFromMeta(text) {
 		.replace(/\s*Zadeyo delivery\.?/gi, ' instant digital delivery.')
 		.replace(/\s*and Zadeyo delivery\.?/gi, ' and instant digital delivery.')
 		.replace(/\|\s*Instant Zadeyo Delivery/g, '| Instant Digital Delivery')
-		.replace(/Buy Project Zomboid Cheats/g, 'Buy Project Zomboid Cheats')
+		.replace(/Buy Dune Awakening Cheats/g, 'Buy Dune Awakening Cheats')
 		.replace(/\s{2,}/g, ' ')
 		.trim();
 }
@@ -98,8 +98,8 @@ export function section(h2, ...args) {
 
 /** Authoritative external citation helpers (open in new tab). */
 export const EXT = {
-	epic: '<a href="https://projectzomboid.com/" target="_blank" rel="noopener noreferrer">The Indie Stone</a>',
-	rust: '<a href="https://projectzomboid.com/" target="_blank" rel="noopener noreferrer">official Project Zomboid patch notes</a>',
-	status: '<a href="https://projectzomboid.com/blog/" target="_blank" rel="noopener noreferrer">Project Zomboid patch notes</a>',
-	eac: '<a href="https://projectzomboid.com/" target="_blank" rel="noopener noreferrer">Project Zomboid anti-cheat</a>',
+	epic: '<a href="https://duneawakening.com/" target="_blank" rel="noopener noreferrer">Funcom</a>',
+	rust: '<a href="https://duneawakening.com/" target="_blank" rel="noopener noreferrer">official Dune Awakening patch notes</a>',
+	status: '<a href="https://duneawakening.com/news/" target="_blank" rel="noopener noreferrer">Dune Awakening patch notes</a>',
+	eac: '<a href="https://duneawakening.com/" target="_blank" rel="noopener noreferrer">Dune Awakening BattlEye anti-cheat</a>',
 };

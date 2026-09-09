@@ -9,8 +9,8 @@ import {
 /** Canonical page identifiers shared across all locales. */
 export type PageId =
 	| 'home'
-	| 'project-zomboid-esp'
-	| 'project-zomboid-aimbot'
+	| 'dune-awakening-esp'
+	| 'dune-awakening-aimbot'
 	| 'features'
 	| 'pricing'
 	| 'setup'
@@ -20,7 +20,7 @@ export type PageId =
 	| 'undetected'
 	| 'wallhack'
 	| 'radar'
-	| 'eac-bypass'
+	| 'battleye-bypass'
 	| 'cheats-2026'
 	| 'hacks'
 	| 'cheat-download'
@@ -37,26 +37,26 @@ export type PageId =
 /** English (official) paths — served at site root without /en/ prefix. */
 export const englishPaths: Record<PageId, string> = {
 	home: '/',
-	'project-zomboid-esp': '/project-zomboid-esp/',
-	'project-zomboid-aimbot': '/project-zomboid-aimbot/',
+	'dune-awakening-esp': '/dune-awakening-esp/',
+	'dune-awakening-aimbot': '/dune-awakening-aimbot/',
 	features: '/features/',
 	pricing: '/pricing/',
 	setup: '/setup/',
 	updates: '/updates/',
 	faq: '/faq/',
 	support: '/support/',
-	undetected: '/project-zomboid-cheats/',
-	wallhack: '/project-zomboid-wallhack/',
-	radar: '/project-zomboid-radar/',
-	'eac-bypass': '/project-zomboid-cheats/',
-	'cheats-2026': '/project-zomboid-cheats/',
-	hacks: '/project-zomboid-cheats/',
+	undetected: '/dune-awakening-cheats/',
+	wallhack: '/dune-awakening-wallhack/',
+	radar: '/dune-awakening-radar/',
+	'battleye-bypass': '/dune-awakening-cheats/',
+	'cheats-2026': '/dune-awakening-cheats/',
+	hacks: '/dune-awakening-cheats/',
 	'cheat-download': '/pricing/',
 	'mod-menu': '/features/',
-	'soft-aim': '/project-zomboid-aimbot/',
-	'best-cheats': '/project-zomboid-cheats/',
-	'aimbot-hack': '/project-zomboid-aimbot/',
-	'esp-hack': '/project-zomboid-esp/',
+	'soft-aim': '/dune-awakening-aimbot/',
+	'best-cheats': '/dune-awakening-cheats/',
+	'aimbot-hack': '/dune-awakening-aimbot/',
+	'esp-hack': '/dune-awakening-esp/',
 	'unlock-all': '/features/',
 	privacy: '/privacy-policy/',
 	refund: '/refund-policy/',
@@ -64,14 +64,14 @@ export const englishPaths: Record<PageId, string> = {
 };
 
 /**
- * Core English pages for sitemap.xml — focused project-zomboid-cheats URLs only.
+ * Core English pages for sitemap.xml — focused dune-awakening-cheats URLs only.
  * Thin keyword-duplicate landings redirect to these canonical pages.
  */
 export const sitemapPageIds: PageId[] = [
 	'home',
 	'hacks',
-	'project-zomboid-esp',
-	'project-zomboid-aimbot',
+	'dune-awakening-esp',
+	'dune-awakening-aimbot',
 	'wallhack',
 	'radar',
 	'features',
@@ -88,15 +88,15 @@ export const sitemapPageIds: PageId[] = [
 /** Thin keyword landings that canonicalize to a core page (see sitemapPageIds). */
 export const canonicalPageAlias: Partial<Record<PageId, PageId>> = {
 	undetected: 'hacks',
-	'eac-bypass': 'hacks',
+	'battleye-bypass': 'hacks',
 	'cheats-2026': 'hacks',
 	'best-cheats': 'hacks',
 	'cheat-download': 'pricing',
 	'mod-menu': 'features',
 	'unlock-all': 'features',
-	'soft-aim': 'project-zomboid-aimbot',
-	'aimbot-hack': 'project-zomboid-aimbot',
-	'esp-hack': 'project-zomboid-esp',
+	'soft-aim': 'dune-awakening-aimbot',
+	'aimbot-hack': 'dune-awakening-aimbot',
+	'esp-hack': 'dune-awakening-esp',
 };
 
 export function getCanonicalPageId(pageId: PageId): PageId {
@@ -117,8 +117,8 @@ export const localeSitemapPageIds: PageId[] = sitemapPageIds.filter((id) => id !
  */
 const shortLocalizedSlug: Record<PageId, string> = {
 	home: '',
-	'project-zomboid-esp': 'esp',
-	'project-zomboid-aimbot': 'aimbot',
+	'dune-awakening-esp': 'esp',
+	'dune-awakening-aimbot': 'aimbot',
 	features: 'features',
 	pricing: 'pricing',
 	setup: 'setup',
@@ -128,7 +128,7 @@ const shortLocalizedSlug: Record<PageId, string> = {
 	undetected: 'undetected',
 	wallhack: 'wallhack',
 	radar: 'radar',
-	'eac-bypass': 'eac',
+	'battleye-bypass': 'eac',
 	'cheats-2026': '2026',
 	hacks: 'cheats',
 	'cheat-download': 'download',
@@ -172,13 +172,13 @@ export function getBreadcrumbLabelForPage(
 		updates: labels.updates,
 		faq: labels.faq,
 		hacks: labels.cheats ?? 'Cheats',
-		'project-zomboid-esp': labels.esp,
-		'project-zomboid-aimbot': labels.aimbot,
+		'dune-awakening-esp': labels.esp,
+		'dune-awakening-aimbot': labels.aimbot,
 		support: 'Support',
 		undetected: 'Undetected',
 		wallhack: 'Wallhack',
 		radar: 'Radar',
-		'eac-bypass': 'EAC Bypass',
+		'battleye-bypass': 'BattlEye Bypass',
 		'cheats-2026': 'Cheats 2026',
 		'cheat-download': 'Download',
 		'mod-menu': 'Mod Menu',
@@ -201,7 +201,7 @@ export function getBreadcrumbLabelForPage(
 		if (after.length > 0 && after.length <= 36) return after;
 	}
 
-	const brandPrefix = 'Project Zomboid Cheats ';
+	const brandPrefix = 'Dune Awakening Cheats ';
 	if (fallbackHeading.startsWith(brandPrefix)) {
 		const rest = fallbackHeading.slice(brandPrefix.length);
 		const restDash = rest.indexOf(' — ');

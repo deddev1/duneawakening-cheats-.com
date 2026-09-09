@@ -1,5 +1,5 @@
 import { siteConfig } from './site';
-import { zomboidImages } from './zomboid';
+import { duneImages } from './dune';
 import { englishPaths, sitemapPageIds, type PageId } from './i18n/routing';
 import { pageSitemapMeta } from './sitemap-meta';
 
@@ -28,58 +28,58 @@ const img = (path: string, title: string, caption: string): SitemapImage => ({
 /** Sitemap image assignments for indexable pages only (see sitemapPageIds in routing.ts). */
 const sitemapImagesByPageId: Partial<Record<PageId, SitemapImage[]>> = {
 	home: [
-		img(zomboidImages.hero, 'Project Zomboid Cheats', 'Project Zomboid Cheats homepage hero'),
-		img(zomboidImages.espWallhack, 'Project Zomboid ESP', 'Project Zomboid ESP wallhack overlay'),
-		img(zomboidImages.aimbotCombat, 'Project Zomboid Aimbot', 'Project Zomboid Aimbot combat preview'),
+		img(duneImages.hero, 'Dune Awakening Cheats', 'Dune Awakening Cheats homepage hero'),
+		img(duneImages.espWallhack, 'Dune Awakening ESP', 'Dune Awakening ESP wallhack overlay'),
+		img(duneImages.aimbotCombat, 'Dune Awakening Aimbot', 'Dune Awakening Aimbot combat preview'),
 	],
 	hacks: [
-		img(zomboidImages.battleRoyaleCombat, 'Project Zomboid Cheats', 'Project Zomboid cheats survival run fight preview'),
-		img(zomboidImages.espWallhack, 'Project Zomboid Cheats ESP', 'Project Zomboid wallhack ESP on zombies, survivors, and special infected'),
+		img(duneImages.battleRoyaleCombat, 'Dune Awakening Cheats', 'Dune Awakening cheats open-world run fight preview'),
+		img(duneImages.espWallhack, 'Dune Awakening Cheats ESP', 'Dune Awakening wallhack ESP on players, NPCs, and elite enemies'),
 	],
-	'project-zomboid-esp': [
-		img(zomboidImages.espWallhack, 'Project Zomboid ESP', 'Project Zomboid ESP wallhack overlay'),
-		img(zomboidImages.playerEsp, 'Project Zomboid Zombie ESP', 'Project Zomboid Zombie ESP markers'),
+	'dune-awakening-esp': [
+		img(duneImages.espWallhack, 'Dune Awakening ESP', 'Dune Awakening ESP wallhack overlay'),
+		img(duneImages.playerEsp, 'Dune Awakening Player ESP', 'Dune Awakening Player ESP markers'),
 	],
-	'project-zomboid-aimbot': [
-		img(zomboidImages.aimbotCombat, 'Project Zomboid Aimbot', 'Project Zomboid Aimbot combat preview'),
-		img(zomboidImages.squadFight, 'Project Zomboid Aimbot group fight', 'Project Zomboid Aimbot in squad combat'),
+	'dune-awakening-aimbot': [
+		img(duneImages.aimbotCombat, 'Dune Awakening Aimbot', 'Dune Awakening Aimbot combat preview'),
+		img(duneImages.squadFight, 'Dune Awakening Aimbot group fight', 'Dune Awakening Aimbot in squad combat'),
 	],
 	wallhack: [
-		img(zomboidImages.espWallhack, 'Project Zomboid Wallhack', 'Project Zomboid wallhack ESP view'),
-		img(zomboidImages.cover, 'Project Zomboid Wallhack overlay', 'Project Zomboid ESP boxes through terrain'),
+		img(duneImages.espWallhack, 'Dune Awakening Wallhack', 'Dune Awakening wallhack ESP view'),
+		img(duneImages.cover, 'Dune Awakening Wallhack overlay', 'Dune Awakening ESP boxes through terrain'),
 	],
 	radar: [
-		img(zomboidImages.radarHack, 'Project Zomboid Radar Hack', 'Project Zomboid radar hack minimap overlay'),
-		img(zomboidImages.rebootFight, 'Project Zomboid Radar Hack overlay', 'Project Zomboid 2D radar for flank detection'),
+		img(duneImages.radarHack, 'Dune Awakening Radar Hack', 'Dune Awakening radar hack minimap overlay'),
+		img(duneImages.rebootFight, 'Dune Awakening Radar Hack overlay', 'Dune Awakening 2D radar for flank detection'),
 	],
 	features: [
-		img(zomboidImages.loadoutBuilder, 'Project Zomboid Cheats Features', 'Project Zomboid Cheats feature overview'),
-		img(zomboidImages.cheatsPackage, 'Project Zomboid Cheats menu', 'Project Zomboid Cheats in-client controls'),
+		img(duneImages.loadoutBuilder, 'Dune Awakening Cheats Features', 'Dune Awakening Cheats feature overview'),
+		img(duneImages.cheatsPackage, 'Dune Awakening Cheats menu', 'Dune Awakening Cheats in-client controls'),
 	],
 	pricing: [
-		img(zomboidImages.cover, 'Project Zomboid Cheats Pricing', 'Project Zomboid Cheats license plans'),
-		img(zomboidImages.cheatsPackage, 'Project Zomboid Cheats package', 'Project Zomboid Cheats product package'),
+		img(duneImages.cover, 'Dune Awakening Cheats Pricing', 'Dune Awakening Cheats license plans'),
+		img(duneImages.cheatsPackage, 'Dune Awakening Cheats package', 'Dune Awakening Cheats product package'),
 	],
 	setup: [
-		img(zomboidImages.squadFight, 'Project Zomboid Cheats Setup', 'Project Zomboid Cheats installation guide'),
+		img(duneImages.squadFight, 'Dune Awakening Cheats Setup', 'Dune Awakening Cheats installation guide'),
 	],
 	updates: [
-		img(zomboidImages.headerArt, 'Project Zomboid Cheats Updates', 'Project Zomboid Cheats patch status'),
+		img(duneImages.headerArt, 'Dune Awakening Cheats Updates', 'Dune Awakening Cheats patch status'),
 	],
 	faq: [
-		img(zomboidImages.loadoutBuilder, 'Project Zomboid Cheats FAQ', 'Project Zomboid Cheats frequently asked questions'),
+		img(duneImages.loadoutBuilder, 'Dune Awakening Cheats FAQ', 'Dune Awakening Cheats frequently asked questions'),
 	],
 	support: [
-		img(zomboidImages.headerArt, 'Project Zomboid Cheats Support', 'Project Zomboid Cheats help center'),
+		img(duneImages.headerArt, 'Dune Awakening Cheats Support', 'Dune Awakening Cheats help center'),
 	],
 	privacy: [
-		img(zomboidImages.cover, 'Project Zomboid Cheats Privacy Policy', 'Project Zomboid Cheats privacy policy'),
+		img(duneImages.cover, 'Dune Awakening Cheats Privacy Policy', 'Dune Awakening Cheats privacy policy'),
 	],
 	refund: [
-		img(zomboidImages.cover, 'Project Zomboid Cheats Refund Policy', 'Project Zomboid Cheats refund policy'),
+		img(duneImages.cover, 'Dune Awakening Cheats Refund Policy', 'Dune Awakening Cheats refund policy'),
 	],
 	terms: [
-		img(zomboidImages.squadFight, 'Project Zomboid Cheats Terms', 'Project Zomboid Cheats terms of use'),
+		img(duneImages.squadFight, 'Dune Awakening Cheats Terms', 'Dune Awakening Cheats terms of use'),
 	],
 };
 
@@ -89,7 +89,7 @@ for (const pageId of sitemapPageIds) {
 	}
 }
 
-/** Canonical English sitemap entries — core project-zomboid-cheats URLs only. */
+/** Canonical English sitemap entries — core dune-awakening-cheats URLs only. */
 export const pageSitemapEntries: PageSitemapEntry[] = sitemapPageIds.map((pageId) => {
 	const meta = pageSitemapMeta[pageId];
 	return {
@@ -102,7 +102,7 @@ export const pageSitemapEntries: PageSitemapEntry[] = sitemapPageIds.map((pageId
 });
 
 /** Unique keyword images for the dedicated image sitemap. */
-export const imageSitemapEntries: SitemapImage[] = zomboidImages.sitemap.map((entry) =>
+export const imageSitemapEntries: SitemapImage[] = duneImages.sitemap.map((entry) =>
 	img(entry.src, entry.title, entry.caption),
 );
 

@@ -7,8 +7,8 @@ import sharp from 'sharp';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
-const OUT = join(ROOT, 'public', 'images', 'zomboid-wingman.webp');
-const ARCHIVE = join(ROOT, 'public', 'images', 'zomboid-wingman-source.jpg');
+const OUT = join(ROOT, 'public', 'images', 'dune-awakening-wingman.webp');
+const ARCHIVE = join(ROOT, 'public', 'images', 'dune-awakening-wingman-source.jpg');
 
 const CURSOR_ASSETS = join(
 	process.env.USERPROFILE ?? '',
@@ -72,7 +72,7 @@ function keyWhiteBackground(data) {
 	}
 }
 
-/** Key near-black backgrounds (legacy survivor art). */
+/** Key near-black backgrounds (legacy player art). */
 function keyBlackBackground(data) {
 	const THRESHOLD = 48;
 	const SOFT = 72;

@@ -5,18 +5,18 @@ import sharp from 'sharp';
 const imagesDir = path.resolve('public/images');
 
 /** Hero LCP asset — responsive widths for srcset */
-const HERO_WIDTHS = [480, 640, 960, 1400];
+const HERO_WIDTHS = [480, 640, 960];
 
 /** Below-fold content images — responsive widths for gallery/product cards */
 const CONTENT_WIDTHS = [480, 640, 960];
 
-const HERO_FILE = 'zomboid-cheats-hero.webp';
+const HERO_FILE = 'dune-awakening-cheats-hero.webp';
 
 const SKIP_PATTERNS = [
 	/-\d+w\.webp$/i,
 	/zadeyo-logo/i,
 	/favicon/i,
-	/project-zomboid-cheats-logo/i,
+	/dune-awakening-cheats-logo/i,
 	/^rust-/i,
 ];
 
@@ -27,7 +27,7 @@ async function optimizeHero() {
 
 	for (const width of HERO_WIDTHS) {
 		if (meta.width && width > meta.width) continue;
-		const file = `zomboid-cheats-hero-${width}w.webp`;
+		const file = `dune-awakening-cheats-hero-${width}w.webp`;
 		const dest = path.join(imagesDir, file);
 		const quality = width <= 480 ? 62 : width <= 640 ? 72 : 80;
 		const buffer = await sharp(source)
@@ -42,9 +42,9 @@ async function optimizeHero() {
 	return results;
 }
 
-async function optimizeZomboidScreenshots() {
+async function optimizeDuneScreenshots() {
 	const files = await readdir(imagesDir);
-	const sources = files.filter((file) => /^project-zomboid-.*\.png$/i.test(file));
+	const sources = files.filter((file) => /^dune-awakening-.*\.png$/i.test(file));
 	const results = [];
 
 	for (const file of sources) {
@@ -81,7 +81,7 @@ async function optimizeContentImages() {
 	const sources = files.filter(
 		(file) =>
 			file.endsWith('.webp') &&
-			file.startsWith('project-zomboid-') &&
+			file.startsWith('dune-awakening-') &&
 			!file.endsWith('.png') &&
 			!SKIP_PATTERNS.some((pattern) => pattern.test(file)) &&
 			file !== HERO_FILE &&
@@ -120,7 +120,7 @@ async function optimizeContentImages() {
 }
 
 const heroResults = await optimizeHero();
-const screenshotResults = await optimizeZomboidScreenshots();
+const screenshotResults = await optimizeDuneScreenshots();
 const contentResults = await optimizeContentImages();
 console.log(
 	`Done — ${heroResults.length} hero + ${screenshotResults.length} screenshot + ${contentResults.length} content variants.`,

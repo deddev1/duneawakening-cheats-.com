@@ -1,4 +1,4 @@
-import { zomboidImages } from '../data/zomboid';
+import { duneImages } from '../data/dune';
 
 export interface ResponsiveWidth {
 	src: string;
@@ -36,7 +36,7 @@ export function isExternalImage(src: string): boolean {
 export function isSiteHeroImage(src: string | undefined): boolean {
 	if (!src) return false;
 	const path = src.split('?')[0].split('#')[0];
-	return /\/zomboid-cheats-hero(?:-\d+w)?\.webp$/i.test(path);
+	return /\/dune-awakening-cheats-hero(?:-\d+w)?\.webp$/i.test(path);
 }
 
 /** Build srcset for content images that have -480w / -960w variants. */
@@ -68,17 +68,17 @@ export function contentSrc(baseSrc: string): string {
 }
 
 export const heroResponsive: ResponsiveWidth[] = [
-	{ src: '/images/zomboid-cheats-hero-480w.webp', width: 480 },
-	{ src: '/images/zomboid-cheats-hero-640w.webp', width: 640 },
-	{ src: '/images/zomboid-cheats-hero-960w.webp', width: 960 },
-	{ src: '/images/zomboid-cheats-hero-1400w.webp', width: 1400 },
+	{ src: '/images/dune-awakening-cheats-hero-480w.webp', width: 480 },
+	{ src: '/images/dune-awakening-cheats-hero-640w.webp', width: 640 },
+	{ src: '/images/dune-awakening-cheats-hero-960w.webp', width: 960 },
+	{ src: '/images/dune-awakening-cheats-hero.webp', width: 1024 },
 ];
 
 /** Desktop srcset (mobile uses a dedicated `<picture>` source — see Hero.astro). */
 export const heroDesktopResponsive: ResponsiveWidth[] = heroResponsive.filter((v) => v.width >= 640);
 
 /** Mobile-first fallback `src` — forced via `<picture>` so DPR cannot pull 960/1400. */
-export const heroImageSrc = zomboidImages.hero;
+export const heroImageSrc = duneImages.hero;
 export const heroIsExternal = heroImageSrc.startsWith('http');
 export const heroSrc = heroIsExternal ? heroImageSrc : heroResponsive[0].src;
 export const heroSrcSet = heroIsExternal ? undefined : buildSrcSet(heroDesktopResponsive);

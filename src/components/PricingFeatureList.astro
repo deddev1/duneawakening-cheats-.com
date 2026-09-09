@@ -26,7 +26,7 @@ const sectionTitle = compactHeading ? 'Included in every license' : ui.nav.featu
 	<header class="pricing-features__head">
 		<h2 id="pricing-features-title" class="pricing-features__title">{sectionTitle}</h2>
 		<p class="pricing-features__subtitle">
-			Everything included for survival, multiplayer, and Knox County looting on Windows PC.
+			Everything included for survival, multiplayer, and Arrakis looting on Windows PC.
 		</p>
 		<div class="pricing-features__badges">
 			<span class="pricing-features__badge">
@@ -128,7 +128,7 @@ const sectionTitle = compactHeading ? 'Included in every license' : ui.nav.featu
 		margin: 0;
 		padding: clamp(0.9rem, 1.8vw, 1.25rem);
 		border-radius: var(--radius-card);
-		border: 1px solid rgba(104, 112, 82, 0.14);
+		border: 1px solid rgba(var(--bronze-rgb), 0.14);
 		background: rgba(10, 28, 29, 0.92);
 	}
 
@@ -159,7 +159,7 @@ const sectionTitle = compactHeading ? 'Included in every license' : ui.nav.featu
 		width: 2.5rem;
 		height: 3px;
 		border-radius: 999px;
-		background: linear-gradient(90deg, #D2AE76, #687052);
+		background: linear-gradient(90deg, var(--color-gold-hover), var(--color-bronze));
 	}
 
 	.pricing-features__subtitle {
@@ -184,8 +184,8 @@ const sectionTitle = compactHeading ? 'Included in every license' : ui.nav.featu
 		gap: 0.4rem;
 		padding: 0.4rem 0.8rem;
 		border-radius: 999px;
-		border: 1px solid rgba(104, 112, 82, 0.35);
-		background: rgba(104, 112, 82, 0.12);
+		border: 1px solid rgba(var(--bronze-rgb), 0.35);
+		background: rgba(var(--bronze-rgb), 0.12);
 		color: var(--color-orchid);
 		font-size: 0.68rem;
 		font-weight: 800;
@@ -209,8 +209,8 @@ const sectionTitle = compactHeading ? 'Included in every license' : ui.nav.featu
 	.pricing-features__card {
 		padding: 1.2rem 1.25rem 1.35rem;
 		border-radius: 0.85rem;
-		border: 1px solid rgba(104, 112, 82, 0.22);
-		background: linear-gradient(145deg, rgba(23, 27, 26, 0.98) 0%, rgba(17, 21, 20, 0.98) 100%);
+		border: 1px solid rgba(var(--bronze-rgb), 0.22);
+		background: linear-gradient(145deg, rgba(var(--card-rgb), 0.98) 0%, rgba(18, 19, 19, 0.98) 100%);
 		display: flex;
 		flex-direction: column;
 		transition:
@@ -222,7 +222,7 @@ const sectionTitle = compactHeading ? 'Included in every license' : ui.nav.featu
 	@media (hover: hover) and (pointer: fine) {
 		.pricing-features__card:hover {
 			transform: translateY(-4px);
-			border-color: rgba(104, 112, 82, 0.42);
+			border-color: rgba(var(--bronze-rgb), 0.42);
 			box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
 		}
 	}
@@ -230,7 +230,7 @@ const sectionTitle = compactHeading ? 'Included in every license' : ui.nav.featu
 	.pricing-features__card-title {
 		margin: 0 0 0.85rem;
 		padding-bottom: 0.7rem;
-		border-bottom: 1px solid rgba(104, 112, 82, 0.2);
+		border-bottom: 1px solid rgba(var(--bronze-rgb), 0.2);
 		font-family: var(--font-display);
 		font-size: 1.02rem;
 		font-weight: 700;
@@ -257,22 +257,7 @@ const sectionTitle = compactHeading ? 'Included in every license' : ui.nav.featu
 	}
 
 	.pricing-features__list--col {
-		gap: 0.55rem;
-	}
-
-	.pricing-features__card--split {
-		padding-inline: 1rem;
-	}
-
-	.pricing-features__card--split .pricing-features__card-title {
-		margin-bottom: 0.75rem;
-		padding-bottom: 0.6rem;
-		font-size: 0.98rem;
-	}
-
-	.pricing-features__card--split .pricing-features__list li {
-		font-size: 0.8125rem;
-		line-height: 1.35;
+		gap: 0.65rem;
 	}
 
 	.pricing-features__list li {
@@ -291,8 +276,8 @@ const sectionTitle = compactHeading ? 'Included in every license' : ui.nav.featu
 		height: 0.45rem;
 		margin-top: 0.42em;
 		border-radius: 50%;
-		background: #d2ae76;
-		box-shadow: 0 0 0 2px rgba(104, 112, 82, 0.18);
+		background: var(--color-gold-hover);
+		box-shadow: 0 0 0 2px rgba(var(--bronze-rgb), 0.18);
 	}
 
 	.pricing-features__item-text {
@@ -308,8 +293,8 @@ const sectionTitle = compactHeading ? 'Included in every license' : ui.nav.featu
 		width: 100%;
 		padding: 0.95rem 1.15rem;
 		border-radius: 0.75rem;
-		border: 1px solid rgba(104, 112, 82, 0.35);
-		background: linear-gradient(180deg, rgba(104, 112, 82, 0.22), rgba(17, 21, 20, 0.18));
+		border: 1px solid rgba(var(--bronze-rgb), 0.35);
+		background: linear-gradient(180deg, rgba(var(--bronze-rgb), 0.22), rgba(18, 19, 19, 0.18));
 		color: var(--color-ink);
 		font-size: 0.92rem;
 		font-weight: 700;
@@ -321,8 +306,8 @@ const sectionTitle = compactHeading ? 'Included in every license' : ui.nav.featu
 	}
 
 	.pricing-features__full-link:hover {
-		border-color: rgba(104, 112, 82, 0.55);
-		background: linear-gradient(180deg, rgba(104, 112, 82, 0.32), rgba(17, 21, 20, 0.24));
+		border-color: rgba(var(--bronze-rgb), 0.55);
+		background: linear-gradient(180deg, rgba(var(--bronze-rgb), 0.32), rgba(18, 19, 19, 0.24));
 		transform: translateY(-1px);
 		color: var(--color-ink);
 	}
@@ -332,14 +317,6 @@ const sectionTitle = compactHeading ? 'Included in every license' : ui.nav.featu
 			grid-template-columns: 1fr;
 		}
 
-		.pricing-features__card--split {
-			padding-inline: 1.25rem;
-		}
-
-		.pricing-features__card--split .pricing-features__list li {
-			font-size: 0.88rem;
-			line-height: 1.45;
-		}
 	}
 
 	@media (max-width: 520px) {

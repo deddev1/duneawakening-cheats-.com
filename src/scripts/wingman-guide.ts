@@ -1,4 +1,4 @@
-/** Spiffo wingman — slides in from the right with a short tagline. */
+/** Dune Awakening logo — slides in from the right as a brand accent. */
 import { wingmanConfig } from '../data/wingman';
 
 let hideTimer: ReturnType<typeof setTimeout> | undefined;
@@ -36,15 +36,11 @@ function hideWingman(root: HTMLElement) {
 }
 
 function showWingman(root: HTMLElement) {
-	const messageEl = root.querySelector<HTMLElement>('[data-wingman-message]');
-	if (!messageEl) return;
-
 	clearTimers();
 	isVisible = true;
 
 	root.hidden = false;
 	root.className = 'wingman';
-	messageEl.textContent = wingmanConfig.message;
 
 	enterTimer = setTimeout(() => {
 		root.classList.add('wingman--enter');

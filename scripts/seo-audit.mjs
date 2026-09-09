@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * SEO audit for projectzomboidcheats.com — Project Zomboid Cheats keyword focus.
+ * SEO audit for duneawakeningcheats.com — Dune Awakening Cheats keyword focus.
  * Run: node scripts/seo-audit.mjs
  * Exit 1 on critical failures.
  */
@@ -10,10 +10,10 @@ import { fileURLToPath } from 'node:url';
 import { englishPagesFinal } from './i18n-data/pages-en.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
-const DOMAIN = 'projectzomboidcheats.com';
+const DOMAIN = 'duneawakeningcheats.com';
 const ORIGIN = `https://${DOMAIN}`;
-const PRIMARY_KW = 'project-zomboid cheats';
-const BRAND_KW = 'project-zomboid';
+const PRIMARY_KW = 'dune-awakening cheats';
+const BRAND_KW = 'dune-awakening';
 
 const BANNED = [
 	/islecheat/i,
@@ -63,19 +63,19 @@ for (const id of pageIds) {
 	if (p.description.length < 100) warn(`${label}: description short (${p.description.length})`);
 
 	if (!hasKeyword(p.title, BRAND_KW)) {
-		fail(`${label}: title missing "project-zomboid" → ${p.title}`);
+		fail(`${label}: title missing "dune-awakening" → ${p.title}`);
 	}
 	if (!hasKeyword(p.description, BRAND_KW)) {
-		fail(`${label}: description missing "project-zomboid" → ${p.description.slice(0, 80)}`);
+		fail(`${label}: description missing "dune-awakening" → ${p.description.slice(0, 80)}`);
 	}
 	if (!hasKeyword(p.h1, BRAND_KW) && !['privacy', 'refund', 'terms'].includes(id)) {
-		fail(`${label}: h1 missing "project-zomboid" → ${p.h1}`);
+		fail(`${label}: h1 missing "dune-awakening" → ${p.h1}`);
 	}
 
 	// Primary keyword in money pages
-	if (['home', 'hacks', 'project-zomboid-esp', 'project-zomboid-aimbot', 'pricing'].includes(id)) {
-		if (!hasKeyword(p.description, PRIMARY_KW) && !hasKeyword(p.description, 'project-zomboid cheats')) {
-			warn(`${label}: description should include primary keyword "project-zomboid cheats"`);
+	if (['home', 'hacks', 'dune-awakening-esp', 'dune-awakening-aimbot', 'pricing'].includes(id)) {
+		if (!hasKeyword(p.description, PRIMARY_KW) && !hasKeyword(p.description, 'dune-awakening cheats')) {
+			warn(`${label}: description should include primary keyword "dune-awakening cheats"`);
 		}
 	}
 }
@@ -138,8 +138,8 @@ const distIndex = join(root, 'dist/index.html');
 if (existsSync(distIndex)) {
 	const html = readFileSync(distIndex, 'utf8');
 	if (!html.includes(`href="${ORIGIN}/"`)) fail('dist/index.html canonical missing apex URL');
-	if (!html.includes('Project Zomboid') && !html.includes('Project Zomboid Cheats')) {
-		fail('dist/index.html missing Project Zomboid in title/meta');
+	if (!html.includes('Dune Awakening') && !html.includes('Dune Awakening Cheats')) {
+		fail('dist/index.html missing Dune Awakening in title/meta');
 	}
 	checkBanned('dist/index.html', html);
 
@@ -174,15 +174,15 @@ if (existsSync(distIndex)) {
 for (const file of ['src/pages/reviews/index.astro', 'src/pages/reviews/[slug]/index.astro']) {
 	const src = readFileSync(join(root, file), 'utf8');
 	checkBanned(file, src);
-	if (!/project-zomboid cheats/i.test(src)) warn(`${file}: consider adding "Project Zomboid Cheats" keyword`);
+	if (!/dune-awakening cheats/i.test(src)) warn(`${file}: consider adding "Dune Awakening Cheats" keyword`);
 }
 
 // --- image alts ---
-const project-zomboidTs = join(root, 'src/data/project-zomboid.ts');
-if (!existsSync(project-zomboidTs)) fail('src/data/project-zomboid.ts missing');
-const project-zomboidSrc = readFileSync(project-zomboidTs, 'utf8');
-if (!/Project Zomboid/i.test(project-zomboidSrc)) fail('project-zomboid.ts image alts missing Project Zomboid keyword');
-checkBanned('project-zomboid.ts', project-zomboidSrc);
+const duneTs = join(root, 'src/data/dune.ts');
+if (!existsSync(duneTs)) fail('src/data/dune.ts missing');
+const duneSrc = readFileSync(duneTs, 'utf8');
+if (!/Dune Awakening/i.test(duneSrc)) fail('dune.ts image alts missing Dune Awakening keyword');
+checkBanned('dune.ts', duneSrc);
 
 const heroAstro = readFileSync(join(root, 'src/components/Hero.astro'), 'utf8');
 if (/alt=""/.test(heroAstro)) fail('Hero.astro must not use empty alt on hero images');
@@ -195,7 +195,7 @@ if (existsSync(distIndex)) {
 }
 
 // --- report ---
-console.log('\n=== SEO Audit: projectzomboidcheats.com ===\n');
+console.log('\n=== SEO Audit: duneawakeningcheats.com ===\n');
 console.log(`Pages checked: ${pageIds.length} EN landing pages`);
 console.log(`Primary keyword: "${PRIMARY_KW}"`);
 console.log(`Canonical: ${ORIGIN}\n`);

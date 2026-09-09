@@ -30,7 +30,7 @@ export const guideIgnImages: Record<string, { src: string; alt: string; ignSourc
 	},
 	'unturned': {
 		src: '/images/guides/unturned.webp',
-		alt: 'Unturned zombie survival sandbox world exploration',
+		alt: 'Dune Awakening open-world desert survival exploration',
 		ignSource: 'https://assets-prd.ignimgs.com/2017/07/07/unturned-button.jpg',
 	},
 	'war-thunder': {
@@ -198,10 +198,10 @@ export const guideIgnImages: Record<string, { src: string; alt: string; ignSourc
 		alt: 'Path of Exile dark fantasy action RPG combat',
 		ignSource: 'https://assets-prd.ignimgs.com/2013/10/23/path-of-exile-button.jpg',
 	},
-	'project-zomboid': {
-		src: '/images/guides/project-zomboid.webp',
-		alt: 'Project Zomboid sci-fi ninja action looter shooter mission',
-		ignSource: 'https://assets-prd.ignimgs.com/2013/03/25/project-zomboid-button.jpg',
+	'dune-awakening': {
+		src: '/images/guides/dune-awakening.webp',
+		alt: 'Dune Awakening sci-fi ninja action looter shooter mission',
+		ignSource: 'https://assets-prd.ignimgs.com/2013/03/25/dune-awakening-button.jpg',
 	},
 	'raft': {
 		src: '/images/guides/raft.webp',
