@@ -62,11 +62,10 @@ export const duneImages = {
 	gallery: [
 		{ src: showcaseScreenshots[0].src, alt: showcaseScreenshots[0].alt, href: '/dune-awakening-cheats/' },
 		{ src: showcaseScreenshots[1].src, alt: showcaseScreenshots[1].alt, href: '/dune-awakening-esp/' },
-		{ src: showcaseScreenshots[3].src, alt: showcaseScreenshots[3].alt, href: '/dune-awakening-wallhack/' },
-		{ src: showcaseScreenshots[6].src, alt: showcaseScreenshots[6].alt, href: '/dune-awakening-aimbot/' },
-		{ src: showcaseScreenshots[4].src, alt: showcaseScreenshots[4].alt, href: '/features/' },
-		{ src: showcaseScreenshots[5].src, alt: showcaseScreenshots[5].alt, href: '/dune-awakening-radar/' },
-		{ src: showcaseScreenshots[2].src, alt: showcaseScreenshots[2].alt, href: '/dune-awakening-cheats/' },
+		{ src: showcaseScreenshots[2].src, alt: showcaseScreenshots[2].alt, href: '/dune-awakening-wallhack/' },
+		{ src: showcaseScreenshots[3].src, alt: showcaseScreenshots[3].alt, href: '/dune-awakening-aimbot/' },
+		{ src: showcaseScreenshots[4].src, alt: showcaseScreenshots[4].alt, href: '/dune-awakening-radar/' },
+		{ src: showcaseScreenshots[5].src, alt: showcaseScreenshots[5].alt, href: '/features/' },
 	],
 	sitemap: [
 		{ src: s.mainMenu.src, title: 'Dune Awakening Cheats | Undetected ESP & Aimbot', caption: s.mainMenu.alt },

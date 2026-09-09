@@ -115,3 +115,5 @@ writeFileSync(
 	) + '\n',
 );
 console.log(`[cloudflare-build] build-version.json → ${buildId}`);
+
+execSync('node scripts/write-worker-routes.mjs', { stdio: 'inherit' });

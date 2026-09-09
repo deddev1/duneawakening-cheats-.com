@@ -61,11 +61,6 @@ export const showcaseScreenshots: GameplayImage[] = [
 		title: 'Dune Awakening ESP overlay screenshot',
 	},
 	{
-		src: `${SUPABASE_GAMEPLAY_BASE}/Screenshot%202026-09-09%20124626%20(1).png`,
-		alt: 'Dune Awakening cheats in-game HUD showing enemy ESP and combat overlays in the Deep Desert',
-		title: 'Dune Awakening combat ESP screenshot',
-	},
-	{
 		src: `${SUPABASE_GAMEPLAY_BASE}/Screenshot%202026-09-09%20124626.png`,
 		alt: 'Dune Awakening wallhack ESP highlighting players and NPCs through terrain on Arrakis dunes',
 		title: 'Dune Awakening wallhack ESP screenshot',

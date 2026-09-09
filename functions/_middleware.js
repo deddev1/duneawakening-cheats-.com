@@ -189,6 +189,17 @@ function getClientProtocol(request) {
 	return new URL(request.url).protocol.replace(':', '').toLowerCase();
 }
 
+function isSeoStaticPath(pathname) {
+	return (
+		pathname === '/robots.txt' ||
+		pathname === '/sitemap-index.xml' ||
+		pathname === '/sitemap.xml' ||
+		pathname === '/sitemap-images.xml' ||
+		pathname === '/sitemap-i18n.xml' ||
+		/^\/sitemap-[a-z]{2}\.xml$/.test(pathname)
+	);
+}
+
 function applySecurityHeaders(headers, { html = false } = {}) {
 	for (const [key, value] of Object.entries(SECURITY_HEADERS)) {
 		headers.set(key, value);
@@ -203,6 +214,19 @@ function applySecurityHeaders(headers, { html = false } = {}) {
 		headers.set('CDN-Cache-Control', 'no-store');
 		headers.set('Cloudflare-CDN-Cache-Control', 'no-store');
 	}
+}
+
+function withSeoStaticHeaders(pathname, response) {
+	const headers = new Headers(response.headers);
+	if (pathname.endsWith('.xml')) {
+		headers.set('Content-Type', 'application/xml; charset=utf-8');
+	} else if (pathname === '/robots.txt') {
+		headers.set('Content-Type', 'text/plain; charset=utf-8');
+	}
+	headers.set('Cache-Control', 'public, max-age=3600');
+	headers.delete('CDN-Cache-Control');
+	headers.delete('Cloudflare-CDN-Cache-Control');
+	return new Response(response.body, { status: response.status, headers });
 }
 
 export async function onRequest(context) {
@@ -253,6 +277,11 @@ export async function onRequest(context) {
 	}
 
 	const response = await context.next();
+
+	if (isSeoStaticPath(url.pathname)) {
+		return withSeoStaticHeaders(url.pathname, response);
+	}
+
 	const headers = new Headers(response.headers);
 	const contentType = headers.get('Content-Type') || '';
 	const isHtml = contentType.includes('text/html');
@@ -261,7 +290,6 @@ export async function onRequest(context) {
 
 	return new Response(response.body, {
 		status: response.status,
-		statusText: response.statusText,
 		headers,
 	});
 }

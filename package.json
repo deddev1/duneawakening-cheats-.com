@@ -9,7 +9,7 @@
 		"dev": "astro dev --host 0.0.0.0 --port 4321",
 		"start": "astro dev --host 0.0.0.0 --port 4321",
 		"dev:ip": "node scripts/dev-with-ip.mjs",
-		"build": "astro build",
+		"build": "astro build && node scripts/write-worker-routes.mjs",
 		"build:cf": "node scripts/cloudflare-build.mjs",
 		"seo:audit": "node scripts/seo-audit.mjs",
 		"build:validate": "astro build && node scripts/validate-sitemaps.mjs && node scripts/seo-audit.mjs",
@@ -23,7 +23,7 @@
 		"generate:blog": "node scripts/generate-blog-posts.mjs",
 		"generate:guides": "node scripts/generate-external-guides.mjs",
 		"fetch:guide-images": "node scripts/fetch-guide-ign-images.mjs",
-		"deploy": "npm run build && wrangler deploy",
+		"deploy": "npm run build:cf && wrangler deploy",
 		"cf:deploy": "npm run build:cf && wrangler deploy",
 		"pages:deploy": "wrangler pages deploy dist --project-name=dune-awakeningcheats",
 		"astro": "astro"
