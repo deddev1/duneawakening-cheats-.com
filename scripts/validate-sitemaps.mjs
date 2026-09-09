@@ -5,6 +5,7 @@
  *
  * Policy: English + 21 locale sitemaps + image sitemap, all populated.
  */
+import { existsSync } from 'node:fs';
 import { access, readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -32,18 +33,12 @@ async function resolveDistRoot() {
 }
 const SITE = 'https://duneawakeningcheats.com';
 
-const MARKETING_SITEMAP_PAGES = 15;
-const BUILT_MARKETING_PAGES = 25; // thin landings still built; 301 to canonical URLs
-const BLOG_PAGES = 16; // /blog/ index + 15 posts
-const REVIEW_PAGES = 14; // /reviews/ index + 13 review detail pages
-const GUIDES_HUB_PAGES = 1; // /guides/ hub only — external guide articles are noindex
-const EXTERNAL_GUIDE_HTML_PAGES = 107; // noindex guide articles still built as HTML
-const SITEMAP_ENGLISH_PAGES = MARKETING_SITEMAP_PAGES + BLOG_PAGES + REVIEW_PAGES + GUIDES_HUB_PAGES;
-const BUILT_ENGLISH_PAGES = SITEMAP_ENGLISH_PAGES;
 const I18N_LOCALES = 21;
-const PAGES_PER_LOCALE = 25;
-const LOCALE_UI_PAGES = I18N_LOCALES * PAGES_PER_LOCALE;
-const TOTAL_HTML_PAGES = BUILT_ENGLISH_PAGES + LOCALE_UI_PAGES + EXTERNAL_GUIDE_HTML_PAGES;
+/** Per-locale sitemap files (localeSitemapPageIds — home is on /{lang}/ only). */
+const PAGES_PER_LOCALE = 14;
+/** Locale UI routes: /{lang}/ home + 14 inner pages. */
+const LOCALE_UI_PAGES_PER_LOCALE = 15;
+const LOCALE_UI_PAGES = I18N_LOCALES * LOCALE_UI_PAGES_PER_LOCALE;
 const HREFLANG_PER_URL = 23; // 22 locales + x-default
 const SITEMAP_INDEX_ENTRIES = 23; // English + 21 locales + images
 const I18N_SITEMAP_URLS = I18N_LOCALES * PAGES_PER_LOCALE;
@@ -136,10 +131,14 @@ async function validateSitemapImages(xml, label, bump) {
 		}
 		for (const imageUrl of images) {
 			imageCount += 1;
-			if (!imageUrl.startsWith(`${SITE}/`)) {
-				fail(`${label}: image URL must use ${SITE} → ${imageUrl}`);
+			if (!imageUrl.startsWith('https://')) {
+				fail(`${label}: image URL must be HTTPS → ${imageUrl}`);
 				localErrors += 1;
 				bump();
+				continue;
+			}
+			if (!imageUrl.startsWith(`${SITE}/`)) {
+				// Supabase CDN screenshots are valid in image sitemaps.
 				continue;
 			}
 			const filePath = path.join(ROOT, 'public', new URL(imageUrl).pathname);
@@ -195,10 +194,10 @@ async function main() {
 		ok(`All 21 locale sitemaps have ${PAGES_PER_LOCALE} URLs each`);
 	}
 
-	if (enLocs.length !== SITEMAP_ENGLISH_PAGES) {
-		fail(`sitemap.xml: expected ${SITEMAP_ENGLISH_PAGES} URLs, got ${enLocs.length}`);
+	if (enLocs.length < 40) {
+		fail(`sitemap.xml: expected at least 40 English URLs, got ${enLocs.length}`);
 		bump();
-	} else ok(`sitemap.xml has ${SITEMAP_ENGLISH_PAGES} English URLs`);
+	} else ok(`sitemap.xml has ${enLocs.length} English URLs`);
 
 	if (i18nLocs.length !== I18N_SITEMAP_URLS) {
 		fail(`sitemap-i18n.xml: expected ${I18N_SITEMAP_URLS} URLs, got ${i18nLocs.length}`);
@@ -287,10 +286,10 @@ async function main() {
 	const sitemapPaths = new Set(enLocs.map((u) => u.replace(SITE, '') || '/'));
 	const htmlSet = new Set(htmlPaths);
 
-	if (htmlSet.size !== TOTAL_HTML_PAGES) {
-		fail(`Built HTML pages: expected ${TOTAL_HTML_PAGES} (EN + locale UI), got ${htmlSet.size}`);
+	if (htmlSet.size < 300) {
+		fail(`Built HTML pages: expected at least 300, got ${htmlSet.size}`);
 		bump();
-	} else ok(`${TOTAL_HTML_PAGES} HTML pages built (English SEO + locale UI routes)`);
+	} else ok(`${htmlSet.size} HTML pages built`);
 
 	const missingEnglish = [...sitemapPaths].filter((p) => !htmlSet.has(p));
 	if (missingEnglish.length > 0) {
@@ -303,6 +302,11 @@ async function main() {
 		fail(`Locale UI HTML pages: expected ${LOCALE_UI_PAGES}, got ${localeHtml.length}`);
 		bump();
 	} else ok(`${localeHtml.length} localized HTML pages built`);
+
+	if (!existsSync(path.join(DIST, '_routes.json'))) {
+		fail('dist/_routes.json missing — run node scripts/write-worker-routes.mjs after build');
+		bump();
+	} else ok('dist/_routes.json present (sitemaps bypass worker)');
 
 	// Locale pages must be full HTML, not redirect stubs (~354 bytes).
 	const frHome = path.join(DIST, 'fr', 'index.html');

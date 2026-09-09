@@ -1,8 +1,8 @@
-import { getEdgeRedirect, isSeoStaticPath, onRequest } from './functions/_middleware.js';
+import { getEdgeRedirect } from './functions/_middleware.js';
 
 /**
- * Cloudflare Workers entry — edge redirects and security headers.
- * Sitemaps/robots are served directly from static assets (no middleware re-wrap).
+ * Minimal Cloudflare Worker — host/path redirects only, then static assets.
+ * Security headers and caching come from public/_headers (no response re-wrap).
  */
 export default {
 	async fetch(request, env) {
@@ -14,19 +14,10 @@ export default {
 				);
 			}
 
-			const url = new URL(request.url);
-			const redirect = getEdgeRedirect(url, request);
+			const redirect = getEdgeRedirect(new URL(request.url), request);
 			if (redirect) return redirect;
 
-			// Crawler files: return the static asset unchanged (see dist/_routes.json).
-			if (isSeoStaticPath(url.pathname)) {
-				return env.ASSETS.fetch(request);
-			}
-
-			return await onRequest({
-				request,
-				next: () => env.ASSETS.fetch(request),
-			});
+			return env.ASSETS.fetch(request);
 		} catch (error) {
 			const message = error instanceof Error ? error.message : String(error);
 			return new Response(`Worker error: ${message}`, {

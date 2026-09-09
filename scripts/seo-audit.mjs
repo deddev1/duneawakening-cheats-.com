@@ -104,8 +104,8 @@ if (!workerEntry.includes("from './functions/_middleware.js'")) {
 if (!workerEntry.includes('env.ASSETS.fetch')) {
 	fail('worker.js must delegate to env.ASSETS.fetch for static assets');
 }
-if (!workerEntry.includes('isSeoStaticPath')) {
-	fail('worker.js must serve sitemap/robots paths directly from ASSETS');
+if (!workerEntry.includes('getEdgeRedirect')) {
+	fail('worker.js must apply edge redirects before ASSETS.fetch');
 }
 
 const wranglerToml = readFileSync(join(root, 'wrangler.toml'), 'utf8');
