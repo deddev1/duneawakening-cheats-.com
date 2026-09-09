@@ -306,7 +306,14 @@ async function main() {
 	if (!existsSync(path.join(DIST, '_routes.json'))) {
 		fail('dist/_routes.json missing — run node scripts/write-worker-routes.mjs after build');
 		bump();
-	} else ok('dist/_routes.json present (sitemaps bypass worker)');
+	} else {
+		const routes = JSON.parse(await readFile(path.join(DIST, '_routes.json'), 'utf8'));
+		const blocked = (routes.exclude ?? []).filter((route) => /sitemap|robots/.test(route));
+		if (blocked.length > 0) {
+			fail(`dist/_routes.json must not exclude crawler paths (causes HTTP 500): ${blocked.join(', ')}`);
+			bump();
+		} else ok('dist/_routes.json present (crawler paths served via worker)');
+	}
 
 	// Locale pages must be full HTML, not redirect stubs (~354 bytes).
 	const frHome = path.join(DIST, 'fr', 'index.html');

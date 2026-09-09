@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 /**
- * Writes dist/_routes.json so Cloudflare serves sitemaps and robots.txt
- * directly from static assets (bypassing the worker). Required for Google
- * Search Console sitemap fetching when edge middleware is active.
+ * Writes dist/_routes.json for Cloudflare Workers static routing.
+ *
+ * All requests go through the user worker (redirects + ASSETS.fetch).
+ * Do NOT exclude sitemap XML paths — routing them to the asset worker alone
+ * caused HTTP 500 in production while robots.txt and HTML still worked.
  */
 import { existsSync, writeFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
@@ -16,23 +18,9 @@ if (!existsSync(join(distDir, 'sitemap-index.xml'))) {
 	process.exit(0);
 }
 
-const I18N_LOCALE_CODES = [
-	'es', 'fr', 'de', 'pt', 'it', 'nl', 'pl', 'ru', 'tr',
-	'ar', 'ja', 'ko', 'zh', 'hi', 'id', 'th', 'vi', 'uk', 'cs', 'ro', 'sv',
-];
-
-const exclude = [
-	'/robots.txt',
-	'/sitemap-index.xml',
-	'/sitemap.xml',
-	'/sitemap-images.xml',
-	'/sitemap-i18n.xml',
-	...I18N_LOCALE_CODES.map((locale) => `/sitemap-${locale}.xml`),
-];
-
 writeFileSync(
 	join(distDir, '_routes.json'),
-	JSON.stringify({ version: 1, include: ['/*'], exclude }, null, 2) + '\n',
+	`${JSON.stringify({ version: 1, include: ['/*'], exclude: [] }, null, 2)}\n`,
 );
 
-console.log(`[write-worker-routes] Wrote dist/_routes.json (${exclude.length} worker bypass paths)`);
+console.log('[write-worker-routes] Wrote dist/_routes.json (all routes via worker)');

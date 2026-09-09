@@ -112,8 +112,11 @@ const wranglerToml = readFileSync(join(root, 'wrangler.toml'), 'utf8');
 if (!/main\s*=\s*["']worker\.js["']/.test(wranglerToml)) {
 	fail('wrangler.toml must set main = "worker.js"');
 }
-if (!wranglerToml.includes('run_worker_first = false')) {
-	fail('wrangler.toml must set run_worker_first = false so sitemaps serve as static assets');
+if (!/run_worker_first\s*=\s*false/.test(wranglerToml)) {
+	fail('wrangler.toml must set run_worker_first = false (HTML assets first; sitemaps via worker ASSETS.fetch)');
+}
+if (!workerEntry.includes('isSeoStaticPath')) {
+	fail('worker.js must set explicit Content-Type for sitemap/robots via isSeoStaticPath');
 }
 if (!existsSync(join(root, 'scripts/write-worker-routes.mjs'))) {
 	fail('Missing scripts/write-worker-routes.mjs for dist/_routes.json generation');
